@@ -1,0 +1,31 @@
+username,nome,email,perfil,origem,ativo
+barbara.montenegro,Bárbara Dias Montenegro,barbara.montenegro@vilaaurora.test,coordenacao,VOL001,True
+maria.fonseca,Maria Luiza Andrade Fonseca,maria.fonseca@vilaaurora.test,coordenacao,UBS004,True
+mariane.vargas,Mariane Sá Vargas,mariane.vargas@vilaaurora.test,coordenacao,VOL002,True
+mariane.dias,Mariane Rocha Dias,mariane.dias@vilaaurora.test,tecnico,VOL003,True
+stephany.paz,Stephany da Rocha da Paz,stephany.paz@vilaaurora.test,tecnico,VOL004,True
+melina.lima,Melina Camargo Lima,melina.lima@vilaaurora.test,tecnico,VOL005,True
+benicio.camara,Benicio Oliveira Câmara,benicio.camara@vilaaurora.test,tecnico,VOL006,True
+joaquim.sampaio,Joaquim Pires Sampaio,joaquim.sampaio@vilaaurora.test,tecnico,VOL007,True
+benicio.cirino,Benício Cunha Cirino,benicio.cirino@vilaaurora.test,auditor,UBS001,True
+isadora.costa,Isadora Lopes Costa,isadora.costa@vilaaurora.test,auditor,VOL008,True
+murilo.sales,Murilo da Luz Sales,murilo.sales@vilaaurora.test,operador,VOL009,True
+gael.sales,Gael Henrique Macedo Sales,gael.sales@vilaaurora.test,operador,VOL010,True
+mathias.jesus,Mathias Souza Jesus,mathias.jesus@vilaaurora.test,operador,VOL011,True
+miguel.campos,Miguel da Cruz Campos,miguel.campos@vilaaurora.test,operador,VOL012,True
+mariane.silveira,Mariane Sales Silveira,mariane.silveira@vilaaurora.test,operador,VOL013,True
+liam.viana,Liam Carvalho Viana,liam.viana@vilaaurora.test,operador,VOL014,True
+heloisa.aragao,Heloisa Barbosa Aragão,heloisa.aragao@vilaaurora.test,operador,VOL015,True
+joaquim.martins,Joaquim Monteiro Martins,joaquim.martins@vilaaurora.test,operador,VOL016,True
+davi.guerra,Davi Miguel Novaes Guerra,davi.guerra@vilaaurora.test,operador,VOL017,True
+asafe.ramos,Asafe Cardoso Ramos,asafe.ramos@vilaaurora.test,operador,VOL018,True
+kamilly.gomes,Kamilly Barros Gomes,kamilly.gomes@vilaaurora.test,operador,VOL019,True
+aylla.mendes,Aylla Moreira Mendes,aylla.mendes@vilaaurora.test,operador,VOL020,True
+maria.farias,Maria Ramos Farias,maria.farias@vilaaurora.test,operador,VOL021,True
+pedro.pinto,Pedro Camargo Pinto,pedro.pinto@vilaaurora.test,operador,VOL022,True
+vinicius.lopes,Vinícius Brito Lopes,vinicius.lopes@vilaaurora.test,operador,VOL023,True
+brayan.sousa,Brayan da Costa Sousa,brayan.sousa@vilaaurora.test,operador,UBS002,True
+luigi.moreira,Luigi Pimenta Moreira,luigi.moreira@vilaaurora.test,operador,UBS003,True
+andre.conceicao,André Monteiro da Conceição,andre.conceicao@vilaaurora.test,operador,UBS005,True
+melina.teixeira,Melina Aparecida Teixeira,melina.teixeira@vilaaurora.test,operador,UBS006,True
+isis.campos,Ísis Costa Campos,isis.campos@vilaaurora.test,operador,UBS007,True

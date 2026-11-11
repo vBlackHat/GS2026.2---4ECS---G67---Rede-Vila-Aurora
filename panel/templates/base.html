@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}Painel Vila Aurora{% endblock %}</title>
+<style>
+  :root { --tinta:#14213d; --fundo:#f7f8fa; --borda:#c8ccd4; --alerta:#9b2226; --ok:#2d6a4f; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,Arial,sans-serif; margin:0; color:var(--tinta); background:var(--fundo); line-height:1.5; }
+  header { background:var(--tinta); color:#fff; padding:.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; }
+  header a { color:#fff; margin-left:1rem; }
+  main { max-width:960px; margin:1.5rem auto; padding:0 1rem; }
+  nav a { margin-right:1rem; }
+  table { border-collapse:collapse; width:100%; background:#fff; }
+  th,td { border:1px solid var(--borda); padding:.4rem .6rem; text-align:left; font-size:.95rem; }
+  th { background:#eceff4; }
+  input,select,button { font-size:1rem; padding:.45rem .6rem; }
+  button { background:var(--tinta); color:#fff; border:0; border-radius:4px; cursor:pointer; }
+  .erro { background:#fde8e8; border:1px solid var(--alerta); color:var(--alerta); padding:.6rem .8rem; border-radius:4px; }
+  .aviso { background:#e8f5ee; border:1px solid var(--ok); color:var(--ok); padding:.6rem .8rem; border-radius:4px; }
+  .cartao { background:#fff; border:1px solid var(--borda); border-radius:6px; padding:1rem 1.2rem; }
+  .modo { font-size:.8rem; background:#ffd166; color:#5a3e00; padding:.1rem .5rem; border-radius:10px; }
+</style>
+</head>
+<body>
+<header>
+  <strong>Rede Vila Aurora · Supervisão</strong>
+  {% if session.get('auth') %}
+  <nav>
+    <a href="{{ url_for('inicio') }}">Início</a>
+    <a href="{{ url_for('historico') }}">Histórico</a>
+    <a href="{{ url_for('bomba') }}">Bombas</a>
+    <span>{{ session.get('user') }} ({{ session.get('perfil') }})</span>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  </nav>
+  {% endif %}
+</header>
+<main>
+  {% with msgs = get_flashed_messages() %}
+    {% for m in msgs %}<p class="aviso">{{ m }}</p>{% endfor %}
+  {% endwith %}
+  {% block conteudo %}{% endblock %}
+</main>
+</body>
+</html>

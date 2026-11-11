@@ -1,0 +1,201 @@
+id,nome,cpf,data_nascimento,endereco,telefone,cadastro_cozinha_solidaria,cadastro_abrigo
+MOR001,Melina Campos Novais,326.270.586-15,1980-09-01,"Viela Maria Alice Pacheco, 21 - Vila Aurora, Serra Clara - SP",+55 42 7443-2568,False,True
+MOR002,Bianca Duarte Silveira,584.210.839-97,1993-12-04,"Passarela Ana Sophia Cavalcanti, 47 - Vila Aurora, Serra Clara - SP",42 5696-3279,True,False
+MOR003,José Miguel Lopes da Mata,882.811.265-41,1962-06-07,"Largo da Mata, 34 - Vila Aurora, Serra Clara - SP",12 3528-1449,True,False
+MOR004,Maria Cecília Porto Guerra,324.484.526-61,1969-03-13,"Loteamento de Rocha, 25 - Vila Aurora, Serra Clara - SP",92 8836-5506,False,True
+MOR005,Luiz Felipe Albuquerque da Mata,976.582.802-09,1984-07-04,"Conjunto Bruna Pacheco, 867 - Vila Aurora, Serra Clara - SP",37 0031-4503,True,True
+MOR006,Maria Cecília Moraes da Mota,180.515.438-91,1990-08-22,"Chácara Marcos Vinicius Nascimento, 2 - Vila Aurora, Serra Clara - SP",+55 66 5373-9241,False,True
+MOR007,Lara Silva Moreira,571.164.941-80,1996-03-28,"Conjunto de Caldeira, 5 - Vila Aurora, Serra Clara - SP",67 0288-3755,False,True
+MOR008,Cecilia Dias Pereira,835.795.111-23,1976-11-24,"Largo Theodoro Andrade, 12 - Vila Aurora, Serra Clara - SP",,False,False
+MOR009,Maria Luísa Fonseca da Cunha,325.688.557-80,2011-02-26,"Estrada Emilly da Mota, 464 - Vila Aurora, Serra Clara - SP",+55 28 6188-4791,True,False
+MOR010,Nicole Moreira Peixoto,355.696.327-28,1962-01-22,"Viaduto Camila Fonseca, 91 - Vila Aurora, Serra Clara - SP",+55 73 4886-1930,False,True
+MOR011,Maria Fernanda da Costa Costela,451.547.428-60,1972-01-13,"Conjunto de Moraes, 84 - Vila Aurora, Serra Clara - SP",+55 61 8556-8983,True,False
+MOR012,Kevin Pereira Novaes,814.497.660-65,1998-07-06,"Distrito Cardoso, 500 - Vila Aurora, Serra Clara - SP",21 2248-5272,True,False
+MOR013,Marcelo Sales Aragão,178.836.550-01,2002-12-24,"Distrito de Jesus, 178 - Vila Aurora, Serra Clara - SP",,False,True
+MOR014,Ana Clara Câmara Moraes,842.599.677-55,1965-10-22,"Chácara de Martins, 62 - Vila Aurora, Serra Clara - SP",+55 64 8070-0159,True,False
+MOR015,Théo Farias Sá,145.037.849-87,1933-07-18,"Estrada de Borges, 46 - Vila Aurora, Serra Clara - SP",+55 71 3373-5286,True,False
+MOR016,Lavínia Marques Fonseca,801.253.739-71,1998-07-14,"Vereda Lunna Novais, 471 - Vila Aurora, Serra Clara - SP",+55 82 1159-2123,False,True
+MOR017,Luana Correia Lima,689.821.046-75,1933-10-11,"Via Porto, 64 - Vila Aurora, Serra Clara - SP",61 0787-4572,False,False
+MOR018,Henrique Vieira Casa Grande,375.555.974-98,1984-07-29,"Quadra Gabriela Pereira, 608 - Vila Aurora, Serra Clara - SP",+55 98 1775-8881,True,False
+MOR019,Yuri da Rocha Andrade,720.754.735-88,1938-08-01,"Campo Moura, 29 - Vila Aurora, Serra Clara - SP",53 9797-8025,False,False
+MOR020,João Felipe Alves Caldeira,390.618.847-73,1968-06-19,"Setor da Cunha, 1 - Vila Aurora, Serra Clara - SP",+55 35 9815-2473,False,False
+MOR021,Aurora Silva Martins,957.555.218-09,1997-02-18,"Feira Olívia Dias, 80 - Vila Aurora, Serra Clara - SP",,True,False
+MOR022,Theo Peixoto Cirino,886.193.073-56,1972-12-12,"Trecho Melo, 967 - Vila Aurora, Serra Clara - SP",+55 15 7360-8724,False,False
+MOR023,Rodrigo Moreira Dias,834.728.556-07,1956-07-05,"Trecho Benjamim Fogaça, 982 - Vila Aurora, Serra Clara - SP",+55 53 9539-1827,False,False
+MOR024,Jade Camargo Caldeira,982.229.004-72,2008-02-24,"Passarela Anthony da Cruz, 50 - Vila Aurora, Serra Clara - SP",+55 71 8451-4203,False,False
+MOR025,Igor Machado Novaes,485.272.202-11,1994-11-19,"Vila Maria Helena Moraes, 4 - Vila Aurora, Serra Clara - SP",88 0412-1430,False,False
+MOR026,Allana Pinto Ramos,804.385.817-93,1935-01-13,"Campo Zoe Cavalcante, 989 - Vila Aurora, Serra Clara - SP",+55 93 7085-3867,False,False
+MOR027,Erick da Cruz Andrade,280.700.159-94,1932-04-20,"Sítio Felipe Macedo, 422 - Vila Aurora, Serra Clara - SP",,False,False
+MOR028,Lucas Novais Costa,502.831.663-56,1979-04-25,"Passarela Agatha Ramos, 27 - Vila Aurora, Serra Clara - SP",,True,False
+MOR029,Arthur Miguel Ferreira Barbosa,735.286.675-25,2002-08-22,"Travessa Moreira, 37 - Vila Aurora, Serra Clara - SP",32 2781-2061,False,False
+MOR030,Maysa Pires Leão,789.713.311-79,1995-04-02,"Rodovia Eduarda Barros, 404 - Vila Aurora, Serra Clara - SP",+55 49 6349-9924,False,False
+MOR031,Sophia Albuquerque Alves,123.636.082-68,1963-09-26,"Estação de Silva, 29 - Vila Aurora, Serra Clara - SP",+55 95 7298-7112,False,False
+MOR032,Anthony Pimenta Moura,456.078.745-09,1960-09-17,"Jardim Asafe Macedo, 742 - Vila Aurora, Serra Clara - SP",+55 12 7911-3571,True,False
+MOR033,Helena da Mota Macedo,835.769.908-11,2004-09-14,"Lagoa de da Cunha, 79 - Vila Aurora, Serra Clara - SP",85 4521-9803,True,False
+MOR034,Paulo Sampaio da Rocha,775.888.144-04,1999-04-04,"Fazenda Aylla Cavalcante, 4 - Vila Aurora, Serra Clara - SP",53 2958-6398,False,True
+MOR035,Ana Júlia Nogueira Nascimento,791.697.978-04,2024-01-17,"Jardim de Ferreira, 33 - Vila Aurora, Serra Clara - SP",96 4093-4269,False,True
+MOR036,José Macedo Garcia,161.284.001-92,1991-12-10,"Avenida de Pimenta, 90 - Vila Aurora, Serra Clara - SP",37 8463-8849,False,False
+MOR037,Natália Ferreira Ferreira,524.735.736-12,2002-12-20,"Fazenda de Albuquerque, 78 - Vila Aurora, Serra Clara - SP",54 9538-9650,False,False
+MOR038,Heitor da Costa Cunha,073.927.319-13,1947-08-19,"Passarela de Melo, 96 - Vila Aurora, Serra Clara - SP",+55 79 5081-1136,False,False
+MOR039,Josué Marques Peixoto,736.087.243-04,1964-02-29,"Vereda de Brito, 63 - Vila Aurora, Serra Clara - SP",,True,False
+MOR040,Ana Lívia Abreu Brito,905.982.819-41,2016-05-03,"Viaduto Kevin Marques, 21 - Vila Aurora, Serra Clara - SP",+55 79 8759-2115,True,True
+MOR041,Renan Cassiano Macedo,276.116.603-58,1975-08-11,"Sítio Vieira, 22 - Vila Aurora, Serra Clara - SP",+55 16 7617-7077,True,False
+MOR042,Clara Souza Brito,845.142.038-91,2026-08-18,"Estação Liz Porto, 5 - Vila Aurora, Serra Clara - SP",0300 361 5202,False,False
+MOR043,Ana Liz da Luz Vasconcelos,578.037.041-91,2007-10-18,"Vila Câmara, 71 - Vila Aurora, Serra Clara - SP",+55 41 9945-6994,True,False
+MOR044,Ravi Lucca Sousa Pereira,490.741.828-02,1981-02-16,"Pátio de da Cunha, 9 - Vila Aurora, Serra Clara - SP",+55 97 8746-4397,False,False
+MOR045,Luan Fogaça Moreira,085.386.713-50,1960-07-05,"Lagoa Henry Pereira, 40 - Vila Aurora, Serra Clara - SP",37 5156-6979,False,False
+MOR046,Fernanda Rocha Caldeira,792.232.838-93,2024-07-07,"Viela Marcela Pacheco, 79 - Vila Aurora, Serra Clara - SP",44 0565-4705,False,False
+MOR047,Júlia Martins Aparecida,271.051.298-09,1988-10-03,"Lago de Nogueira, 601 - Vila Aurora, Serra Clara - SP",71 4644-0330,False,False
+MOR048,Eduardo da Conceição Cavalcanti,252.781.206-66,1935-08-16,"Vale Valentina Marques, 9 - Vila Aurora, Serra Clara - SP",98 9042-1631,False,False
+MOR049,Davi Luiz Caldeira Vieira,958.519.043-57,2006-12-16,"Parque de Andrade, 97 - Vila Aurora, Serra Clara - SP",+55 17 4658-7306,False,False
+MOR050,Ana Lívia Cassiano da Mata,999.248.005-09,1992-04-01,"Esplanada de Pereira, 20 - Vila Aurora, Serra Clara - SP",,True,False
+MOR051,Maria Oliveira Jesus,137.298.711-89,2009-09-12,"Vereda Juan Viana, 5 - Vila Aurora, Serra Clara - SP",+55 44 2634-7892,False,False
+MOR052,Noah Duarte Castro,640.794.260-80,2004-02-04,"Lago de Alves, 4 - Vila Aurora, Serra Clara - SP",84 6156-1059,True,False
+MOR053,Francisco da Mota Novaes,571.647.744-56,1951-11-10,"Jardim Francisco da Rosa, 981 - Vila Aurora, Serra Clara - SP",+55 35 3785-2223,False,False
+MOR054,Thiago Rodrigues Campos,521.980.334-46,1968-04-28,"Via de Melo, 43 - Vila Aurora, Serra Clara - SP",+55 74 5719-2948,False,False
+MOR055,Carlos Eduardo Novais Ferreira,521.362.958-03,2012-03-17,"Ladeira Melo, 5 - Vila Aurora, Serra Clara - SP",+55 65 4761-3414,False,False
+MOR056,Kamilly Barbosa Mendes,886.457.328-32,1961-03-16,"Conjunto Calebe Azevedo, 26 - Vila Aurora, Serra Clara - SP",+55 83 3800-5305,False,False
+MOR057,Gabriel da Cunha Monteiro,426.927.670-30,2024-10-21,"Viela Bruna Nogueira, 630 - Vila Aurora, Serra Clara - SP",92 7605-5384,False,False
+MOR058,Sabrina Ferreira Guerra,858.463.884-94,1982-06-06,"Vereda Ramos, 7 - Vila Aurora, Serra Clara - SP",,False,False
+MOR059,Maria Flor Rodrigues Aragão,556.830.686-91,1992-07-27,"Recanto Casa Grande, 26 - Vila Aurora, Serra Clara - SP",44 1413-6334,False,False
+MOR060,Paulo Marques Rodrigues,389.650.133-06,1931-09-17,"Rua Melo, 72 - Vila Aurora, Serra Clara - SP",+55 55 3942-4646,False,False
+MOR061,Luiza Novais Lopes,268.350.811-56,1950-02-20,"Parque Emilly Cunha, 889 - Vila Aurora, Serra Clara - SP",11 5358-1342,False,False
+MOR062,Emanuel Marques Cavalcanti,581.635.401-93,1952-01-11,"Lagoa Pinto, 87 - Vila Aurora, Serra Clara - SP",,False,False
+MOR063,Bryan da Mota Silveira,761.138.759-63,2015-11-13,"Vila Fernando Pires, 5 - Vila Aurora, Serra Clara - SP",83 5168-8656,True,False
+MOR064,Fernando Campos Sampaio,771.862.107-33,1996-09-10,"Avenida Moreira, 63 - Vila Aurora, Serra Clara - SP",31 3494-0429,False,False
+MOR065,Yan Vasconcelos Mendes,077.510.626-74,1957-07-31,"Campo de Vargas, 524 - Vila Aurora, Serra Clara - SP",61 0261-9568,True,False
+MOR066,Anthony Gabriel Sousa Novais,361.520.299-62,1930-11-22,"Alameda Silva, 6 - Vila Aurora, Serra Clara - SP",+55 55 0070-0917,True,False
+MOR067,Cauã Costa Sá,135.161.994-24,2007-12-29,"Residencial Costa, 60 - Vila Aurora, Serra Clara - SP",79 0304-8877,False,False
+MOR068,Sarah Sales Vargas,439.828.640-39,1940-02-07,"Passarela Eduardo Caldeira, 46 - Vila Aurora, Serra Clara - SP",44 1102-0383,True,False
+MOR069,Breno Aragão das Neves,643.972.584-07,1931-05-22,"Aeroporto Abreu, 72 - Vila Aurora, Serra Clara - SP",,True,False
+MOR070,Matteo Sá Macedo,303.995.515-23,2023-05-28,"Residencial Gael Henrique Fernandes, 42 - Vila Aurora, Serra Clara - SP",+55 24 1267-0812,False,False
+MOR071,Manuella Melo Almeida,615.679.596-02,2013-12-09,"Trevo Luiz Felipe Pacheco, 923 - Vila Aurora, Serra Clara - SP",+55 34 3370-2718,False,False
+MOR072,Larissa Campos Freitas,547.056.709-58,1984-06-03,"Conjunto Pacheco, 591 - Vila Aurora, Serra Clara - SP",91 0675-5485,False,False
+MOR073,Daniel Lima Gonçalves,801.564.644-80,2023-10-14,"Loteamento Brito, 77 - Vila Aurora, Serra Clara - SP",98 2597-3481,True,True
+MOR074,João Guilherme da Mata Campos,205.987.198-07,1974-07-19,"Viela de Santos, 56 - Vila Aurora, Serra Clara - SP",+55 89 6628-2909,False,False
+MOR075,Luiz Fernando Albuquerque Moura,163.111.196-51,2000-12-31,"Conjunto de Santos, 32 - Vila Aurora, Serra Clara - SP",+55 17 4262-8370,False,False
+MOR076,Emanuella Aparecida Garcia,046.587.306-51,1936-08-18,"Condomínio de Nogueira, 898 - Vila Aurora, Serra Clara - SP",+55 13 4151-7801,True,False
+MOR077,Ravi Lucca da Conceição Souza,829.601.796-26,1990-11-14,"Estação Hadassa Pastor, 46 - Vila Aurora, Serra Clara - SP",,False,False
+MOR078,Maria Isis Moura Carvalho,041.263.478-37,2018-09-21,"Vila Benício Ramos, 721 - Vila Aurora, Serra Clara - SP",+55 47 2138-5607,True,False
+MOR079,Bryan Almeida Cavalcante,401.376.156-48,1943-02-24,"Passarela de Teixeira, 669 - Vila Aurora, Serra Clara - SP",,False,True
+MOR080,Nicolas da Luz Câmara,914.833.541-06,1942-12-28,"Passarela Antonella Duarte, 2 - Vila Aurora, Serra Clara - SP",+55 83 5100-6371,False,False
+MOR081,Maria Júlia Barbosa Ramos,137.852.223-01,1942-09-30,"Fazenda Ravy Pires, 71 - Vila Aurora, Serra Clara - SP",37 8509-8680,False,False
+MOR082,Gustavo Henrique Duarte da Cunha,975.332.571-12,1951-10-02,"Campo Bryan Correia, 3 - Vila Aurora, Serra Clara - SP",,False,False
+MOR083,Luiz Gustavo Ferreira Abreu,480.853.470-33,1945-11-15,"Esplanada Alexandre Freitas, 2 - Vila Aurora, Serra Clara - SP",,True,False
+MOR084,Yago Nascimento Carvalho,134.146.175-02,1988-07-24,"Condomínio Nina Cunha, 11 - Vila Aurora, Serra Clara - SP",0500 238 6135,True,False
+MOR085,João Siqueira Camargo,014.613.380-35,2017-09-02,"Estação Cavalcanti, 78 - Vila Aurora, Serra Clara - SP",+55 84 7877-6040,True,True
+MOR086,Eloah das Neves Cavalcante,514.786.589-68,1958-04-29,"Rua Aylla da Paz, 34 - Vila Aurora, Serra Clara - SP",77 6412-9744,False,False
+MOR087,Lívia Guerra Guerra,776.055.384-65,1934-08-23,"Quadra de Borges, 49 - Vila Aurora, Serra Clara - SP",55 0550-4965,False,False
+MOR088,Maria Albuquerque Oliveira,810.670.907-80,1970-07-04,"Praça Vinícius Sampaio, 43 - Vila Aurora, Serra Clara - SP",96 7926-8771,False,False
+MOR089,Antônio Pinto Sá,514.136.334-13,2019-05-15,"Lago Thomas da Paz, 59 - Vila Aurora, Serra Clara - SP",,False,False
+MOR090,Caio da Cruz Marques,108.752.623-00,1947-12-28,"Pátio Valentina da Cruz, 76 - Vila Aurora, Serra Clara - SP",+55 12 7568-9651,True,False
+MOR091,Julia Siqueira da Rosa,646.686.316-64,1983-04-16,"Sítio Sabrina Cavalcanti, 4 - Vila Aurora, Serra Clara - SP",71 2209-8769,False,False
+MOR092,Brenda da Cruz Silveira,899.745.358-09,2018-05-22,"Vale de Monteiro, 2 - Vila Aurora, Serra Clara - SP",+55 12 0989-7600,True,False
+MOR093,Luiz Gustavo Sá Moraes,172.334.967-40,2008-10-28,"Aeroporto Monteiro, 2 - Vila Aurora, Serra Clara - SP",,True,False
+MOR094,Laís Pimenta Casa Grande,410.475.168-54,2025-10-05,"Jardim de das Neves, 97 - Vila Aurora, Serra Clara - SP",+55 63 0624-4317,False,False
+MOR095,Luna da Mata Lima,141.082.359-84,2020-07-29,"Ladeira Otto Cavalcante, 71 - Vila Aurora, Serra Clara - SP",,False,False
+MOR096,Maria Júlia Macedo Machado,404.294.747-69,1988-01-30,"Lago Borges, 53 - Vila Aurora, Serra Clara - SP",,False,False
+MOR097,Ana Clara Macedo Ramos,182.446.026-01,2006-09-08,"Passarela de Macedo, 35 - Vila Aurora, Serra Clara - SP",,False,False
+MOR098,Davi Lucas Nascimento Pastor,808.010.005-57,1986-02-04,"Favela Cavalcante, 3 - Vila Aurora, Serra Clara - SP",71 6869-2271,True,False
+MOR099,Pedro Lucas Moura Correia,091.703.927-07,2023-03-24,"Estação Nunes, 27 - Vila Aurora, Serra Clara - SP",48 0295-2920,True,False
+MOR100,Mariane da Rocha Cavalcante,030.488.778-10,1963-02-17,"Residencial Melissa Correia, 81 - Vila Aurora, Serra Clara - SP",63 3452-6064,True,False
+MOR101,Ana Vitória Abreu Barbosa,611.463.511-61,1938-04-21,"Vale Allana Jesus, 7 - Vila Aurora, Serra Clara - SP",45 8450-0748,True,False
+MOR102,Ayla Camargo da Paz,004.030.042-00,1983-01-04,"Condomínio Costela, 61 - Vila Aurora, Serra Clara - SP",69 0408-3781,False,False
+MOR103,Bianca Ramos Vasconcelos,671.552.930-25,1998-04-15,"Pátio de Azevedo, 2 - Vila Aurora, Serra Clara - SP",+55 32 1954-4461,False,False
+MOR104,Emanuelly Caldeira Fogaça,081.297.705-05,2020-10-31,"Viaduto Thales Pinto, 11 - Vila Aurora, Serra Clara - SP",+55 71 5490-9218,False,False
+MOR105,Mirella Pinto Sousa,923.981.337-38,1936-07-10,"Trevo de Farias, 51 - Vila Aurora, Serra Clara - SP",+55 74 3733-6979,True,False
+MOR106,Antonella Brito Leão,186.158.129-78,1981-03-16,"Distrito Vitor Gabriel Martins, 94 - Vila Aurora, Serra Clara - SP",,False,True
+MOR107,Antônio Farias Pacheco,470.675.548-46,1956-06-28,"Rodovia de Aparecida, 65 - Vila Aurora, Serra Clara - SP",,True,False
+MOR108,Rebeca Fogaça Lopes,351.676.825-85,2002-10-09,"Largo Cirino, 745 - Vila Aurora, Serra Clara - SP",+55 37 8634-0561,True,False
+MOR109,Pedro Freitas Monteiro,124.172.643-41,2006-11-17,"Pátio Pacheco, 72 - Vila Aurora, Serra Clara - SP",,False,False
+MOR110,Helena Ramos Pinto,282.909.208-23,1982-10-06,"Via das Neves, 23 - Vila Aurora, Serra Clara - SP",84 9143-0747,False,True
+MOR111,Manuella Macedo Gomes,422.042.628-04,1949-07-09,"Rua de Ramos, 29 - Vila Aurora, Serra Clara - SP",0900 044 1861,False,False
+MOR112,Ravi Rezende Rezende,950.601.889-82,1955-02-15,"Vale Ana Sophia Lima, 51 - Vila Aurora, Serra Clara - SP",+55 79 9546-1807,False,False
+MOR113,Clara Garcia Macedo,517.801.332-87,1981-11-14,"Distrito Alana Sampaio, 56 - Vila Aurora, Serra Clara - SP",+55 37 2202-8485,True,False
+MOR114,José Miguel Rios Farias,637.827.608-09,2009-10-01,"Esplanada Rocha, 87 - Vila Aurora, Serra Clara - SP",0800 176 8878,False,False
+MOR115,Thiago Oliveira Oliveira,121.385.607-84,1987-03-14,"Viaduto Isaque Mendonça, 678 - Vila Aurora, Serra Clara - SP",31 7566-0554,True,False
+MOR116,Sarah Correia Silveira,696.953.432-45,2016-03-10,"Viela de Santos, 17 - Vila Aurora, Serra Clara - SP",92 8531-6244,False,False
+MOR117,Rafaela Marques Azevedo,501.351.006-67,1977-10-21,"Rua Murilo Jesus, 40 - Vila Aurora, Serra Clara - SP",+55 62 0191-7229,False,False
+MOR118,Cauê Costela Vargas,171.124.335-34,1962-03-18,"Área Ana Sophia Moura, 8 - Vila Aurora, Serra Clara - SP",91 7854-5791,True,False
+MOR119,Bento Camargo Gomes,986.801.543-01,1986-10-05,"Estação de Pimenta, 48 - Vila Aurora, Serra Clara - SP",+55 62 7174-5143,True,False
+MOR120,Antonella Campos Campos,022.502.152-87,1961-12-25,"Residencial Porto, 773 - Vila Aurora, Serra Clara - SP",63 7471-4732,False,True
+MOR121,Pietro Borges Cavalcante,482.941.834-67,2023-11-08,"Núcleo João Gabriel Vargas, 277 - Vila Aurora, Serra Clara - SP",+55 89 2744-0430,True,False
+MOR122,Kamilly da Mota Cavalcanti,386.135.212-59,1980-10-05,"Favela Joaquim da Rosa, 63 - Vila Aurora, Serra Clara - SP",+55 43 8381-4957,False,False
+MOR123,Alexia Sá da Rocha,863.787.760-50,1937-11-19,"Setor Giovanna Gonçalves, 27 - Vila Aurora, Serra Clara - SP",+55 61 5204-2651,True,False
+MOR124,Emanuel Rocha Rodrigues,246.854.242-81,2006-07-16,"Parque de Cirino, 69 - Vila Aurora, Serra Clara - SP",+55 93 5902-7105,False,False
+MOR125,João Vitor Nogueira Vasconcelos,129.744.766-28,1969-01-17,"Trecho de das Neves, 60 - Vila Aurora, Serra Clara - SP",41 1830-0071,False,False
+MOR126,Ana Lívia Gomes Duarte,713.936.055-33,2014-03-16,"Praia Luiz Henrique Sampaio, 53 - Vila Aurora, Serra Clara - SP",99 8830-2265,False,False
+MOR127,Théo Pimenta Andrade,709.605.643-23,1980-09-18,"Esplanada de Câmara, 58 - Vila Aurora, Serra Clara - SP",+55 85 0590-6192,False,False
+MOR128,João Pedro Macedo Freitas,926.877.109-80,1962-01-20,"Lagoa Rhavi Vieira, 84 - Vila Aurora, Serra Clara - SP",12 4519-9559,False,False
+MOR129,Mateus Sousa Pereira,469.403.720-09,2012-11-13,"Setor de Borges, 40 - Vila Aurora, Serra Clara - SP",64 1387-3037,False,False
+MOR130,Emanuella Casa Grande Jesus,266.075.689-99,1979-11-10,"Residencial Rebeca Teixeira, 60 - Vila Aurora, Serra Clara - SP",,False,False
+MOR131,Ian Rodrigues Ramos,480.788.203-14,1984-02-01,"Viaduto de Melo, 31 - Vila Aurora, Serra Clara - SP",38 3982-5753,True,False
+MOR132,Maria Andrade Siqueira,987.695.397-41,2001-09-21,"Alameda Montenegro, 1 - Vila Aurora, Serra Clara - SP",0900 627 7326,True,False
+MOR133,Yan da Mota Duarte,897.600.282-21,1946-02-08,"Fazenda Laura Porto, 404 - Vila Aurora, Serra Clara - SP",+55 51 0417-2614,True,False
+MOR134,João Gabriel Cavalcante Farias,169.298.442-00,2022-02-09,"Largo Cassiano, 7 - Vila Aurora, Serra Clara - SP",,False,True
+MOR135,Camila Mendes Guerra,624.431.774-25,1973-10-09,"Viaduto Leandro Jesus, 6 - Vila Aurora, Serra Clara - SP",+55 42 8858-9383,False,False
+MOR136,Levi Pastor Peixoto,231.677.792-93,2001-05-29,"Recanto Breno Pereira, 4 - Vila Aurora, Serra Clara - SP",+55 42 7570-6016,True,False
+MOR137,Gabriela Mendes Gomes,344.796.725-09,1960-01-27,"Praia Marcela Moraes, 77 - Vila Aurora, Serra Clara - SP",,True,False
+MOR138,Mirella Pacheco Rios,903.321.266-85,2005-01-07,"Quadra Sousa, 16 - Vila Aurora, Serra Clara - SP",+55 79 4236-5966,False,False
+MOR139,Caio Cirino Lopes,271.383.129-63,1995-05-30,"Praia Farias, 57 - Vila Aurora, Serra Clara - SP",+55 45 5477-3337,False,True
+MOR140,Alexia Teixeira Rios,029.529.207-54,2003-07-30,"Viaduto Heloisa Rodrigues, 50 - Vila Aurora, Serra Clara - SP",+55 98 6181-1833,True,False
+MOR141,Gael Henrique Melo Nascimento,798.371.763-60,1948-06-30,"Largo das Neves, 5 - Vila Aurora, Serra Clara - SP",+55 48 5321-6870,True,False
+MOR142,Maria Helena Montenegro Santos,064.501.145-26,2003-06-07,"Vila Murilo Ramos, 8 - Vila Aurora, Serra Clara - SP",+55 92 6751-2725,False,False
+MOR143,Clara Pires Duarte,965.845.007-57,2000-07-15,"Praça de Duarte, 8 - Vila Aurora, Serra Clara - SP",27 7260-0120,False,False
+MOR144,Luiz Fernando Gomes Gomes,481.013.315-07,2021-11-17,"Trevo Maria Eduarda Costela, 77 - Vila Aurora, Serra Clara - SP",55 6971-6973,True,False
+MOR145,Diego Lima da Mata,837.819.596-10,1983-04-10,"Travessa Moraes, 40 - Vila Aurora, Serra Clara - SP",85 9749-6224,False,True
+MOR146,Elisa Sousa Ramos,195.444.615-24,1990-10-12,"Jardim Machado, 9 - Vila Aurora, Serra Clara - SP",27 8078-2695,False,False
+MOR147,Elisa Andrade da Rosa,392.102.549-46,1951-07-28,"Jardim Ana Cecília Albuquerque, 35 - Vila Aurora, Serra Clara - SP",,True,False
+MOR148,Guilherme Nunes Lima,218.890.499-06,1935-05-05,"Feira Sophie Lima, 63 - Vila Aurora, Serra Clara - SP",+55 48 9047-0876,False,False
+MOR149,Erick Silveira da Costa,237.336.979-61,1977-01-02,"Jardim Teixeira, 297 - Vila Aurora, Serra Clara - SP",61 2262-4921,False,False
+MOR150,Maitê Viana Ramos,542.474.480-06,1933-06-15,"Rodovia de Siqueira, 64 - Vila Aurora, Serra Clara - SP",11 9284-5222,True,False
+MOR151,Caroline Alves Pires,065.585.625-03,1955-07-10,"Largo Barros, 176 - Vila Aurora, Serra Clara - SP",13 3438-1721,True,False
+MOR152,Jade Nogueira Correia,618.634.056-24,1988-05-28,"Parque Olívia Brito, 22 - Vila Aurora, Serra Clara - SP",+55 15 4810-3524,False,False
+MOR153,Maria Liz Moraes Machado,069.426.698-15,1966-01-06,"Área Fogaça, 3 - Vila Aurora, Serra Clara - SP",91 7574-8878,False,False
+MOR154,Enzo Andrade Sales,317.914.307-09,1937-12-08,"Colônia de Aparecida, 33 - Vila Aurora, Serra Clara - SP",+55 19 9306-5477,False,False
+MOR155,Enrico Cardoso da Costa,886.918.044-17,1978-07-18,"Esplanada Sophie Santos, 12 - Vila Aurora, Serra Clara - SP",12 5331-6188,False,True
+MOR156,Gabriel da Luz Vasconcelos,340.695.631-90,2004-02-09,"Estrada Macedo, 10 - Vila Aurora, Serra Clara - SP",,True,False
+MOR157,Fernando Castro Barros,546.180.756-95,1948-06-03,"Avenida de Sales, 76 - Vila Aurora, Serra Clara - SP",+55 49 2055-9328,True,False
+MOR158,João Farias Almeida,466.412.202-07,1978-03-17,"Avenida de Borges, 66 - Vila Aurora, Serra Clara - SP",77 6126-5249,True,False
+MOR159,Felipe Costa Rios,580.257.978-14,1993-05-30,"Condomínio da Mata, 12 - Vila Aurora, Serra Clara - SP",+55 85 2588-3271,False,False
+MOR160,Fernanda Vieira Souza,784.999.617-80,2010-02-01,"Trecho Carvalho, 151 - Vila Aurora, Serra Clara - SP",+55 27 2949-2442,False,False
+MOR161,Joaquim da Mota da Cruz,557.566.055-93,1942-06-10,"Largo Melo, 22 - Vila Aurora, Serra Clara - SP",,True,False
+MOR162,Arthur Vieira Novaes,670.887.853-41,2022-02-26,"Loteamento Machado, 799 - Vila Aurora, Serra Clara - SP",+55 53 9530-9552,False,False
+MOR163,Isaac Rezende Caldeira,487.177.483-06,2004-11-02,"Pátio Moraes, 92 - Vila Aurora, Serra Clara - SP",33 4015-6721,True,False
+MOR164,Lavínia Camargo Barbosa,201.917.229-11,2012-08-02,"Colônia de Viana, 7 - Vila Aurora, Serra Clara - SP",11 4558-4195,False,False
+MOR165,Mariana Aragão Moreira,058.077.785-54,2005-05-27,"Alameda Stella Câmara, 543 - Vila Aurora, Serra Clara - SP",+55 33 1907-0147,False,False
+MOR166,Zoe da Luz Pastor,016.992.938-81,2007-07-17,"Conjunto de Andrade, 50 - Vila Aurora, Serra Clara - SP",+55 33 8053-5019,False,False
+MOR167,Gustavo Henrique Pacheco Viana,451.435.115-60,1968-03-04,"Avenida Aparecida, 74 - Vila Aurora, Serra Clara - SP",0300 420 3407,False,False
+MOR168,Giovanna da Paz Brito,366.747.147-56,1965-10-10,"Trecho Maria Júlia Marques, 6 - Vila Aurora, Serra Clara - SP",+55 92 3656-2001,True,False
+MOR169,Gael Almeida Novaes,452.877.132-24,2013-01-07,"Fazenda Caio Monteiro, 1 - Vila Aurora, Serra Clara - SP",+55 49 5379-1017,True,False
+MOR170,João Felipe Mendes Campos,043.096.428-54,2002-12-22,"Conjunto da Rosa, 59 - Vila Aurora, Serra Clara - SP",+55 31 4529-3131,False,False
+MOR171,Matteo Oliveira Alves,314.335.918-81,1931-05-01,"Distrito de Lima, 14 - Vila Aurora, Serra Clara - SP",,True,False
+MOR172,Igor Moreira Lima,495.744.158-81,1988-08-20,"Favela de Gonçalves, 7 - Vila Aurora, Serra Clara - SP",55 1324-9656,True,False
+MOR173,Mariah Oliveira Pacheco,125.204.265-52,1965-05-12,"Quadra Nunes, 56 - Vila Aurora, Serra Clara - SP",,True,False
+MOR174,Ryan Cardoso Camargo,626.958.359-40,2000-04-06,"Quadra José Miguel Sampaio, 67 - Vila Aurora, Serra Clara - SP",,True,False
+MOR175,Emanuelly Rodrigues Aparecida,052.865.946-47,1988-05-08,"Sítio da Cruz, 4 - Vila Aurora, Serra Clara - SP",18 5493-5297,True,False
+MOR176,Caroline Aparecida Mendonça,830.007.146-60,1975-10-18,"Trecho da Mata, 60 - Vila Aurora, Serra Clara - SP",+55 53 4381-5964,False,False
+MOR177,Dom Andrade Correia,223.488.830-16,2000-12-03,"Área de Melo, 31 - Vila Aurora, Serra Clara - SP",,True,False
+MOR178,Leandro Novaes Ramos,549.089.823-26,1933-06-14,"Loteamento de Lopes, 703 - Vila Aurora, Serra Clara - SP",+55 93 4546-2685,False,False
+MOR179,Maria Cecília Cardoso Camargo,590.619.227-13,1950-11-20,"Colônia Liz Vieira, 7 - Vila Aurora, Serra Clara - SP",82 6505-2651,True,False
+MOR180,Lunna Aragão Câmara,834.474.451-23,1953-11-19,"Praça de Oliveira, 465 - Vila Aurora, Serra Clara - SP",98 6482-3768,False,False
+MOR181,Bianca Nogueira Sousa,593.929.817-68,2014-09-15,"Conjunto Maysa Fernandes, 16 - Vila Aurora, Serra Clara - SP",+55 85 4960-2372,False,False
+MOR182,Hadassa Rocha Barbosa,138.730.375-90,1953-06-21,"Setor Ana Sophia Porto, 11 - Vila Aurora, Serra Clara - SP",11 2491-8847,False,False
+MOR183,Sarah Freitas Fernandes,578.605.183-85,1992-10-14,"Viela de Sousa, 68 - Vila Aurora, Serra Clara - SP",+55 79 9598-9322,False,False
+MOR184,Gabriela Pinto Sá,125.398.257-03,1951-06-16,"Vale Fernandes, 2 - Vila Aurora, Serra Clara - SP",75 9027-7521,True,True
+MOR185,Juliana Castro Borges,730.809.086-87,1956-10-13,"Pátio Gael Henrique da Conceição, 63 - Vila Aurora, Serra Clara - SP",,False,False
+MOR186,Giovanna Fernandes da Cunha,644.527.436-69,2004-12-02,"Distrito Benício Fonseca, 94 - Vila Aurora, Serra Clara - SP",32 8642-2386,False,False
+MOR187,Guilherme Jesus Rocha,104.172.614-71,2008-09-29,"Rua Gabrielly Silveira, 64 - Vila Aurora, Serra Clara - SP",+55 13 7135-3493,True,False
+MOR188,Hellena Nogueira Guerra,152.165.767-04,1953-04-24,"Quadra de Santos, 700 - Vila Aurora, Serra Clara - SP",27 1735-9648,False,False
+MOR189,Elisa Casa Grande Gomes,260.581.885-30,2011-09-07,"Condomínio de Rocha, 381 - Vila Aurora, Serra Clara - SP",+55 18 6419-7110,False,False
+MOR190,Apollo Duarte Sales,329.907.709-00,1945-01-24,"Travessa Benjamim Aparecida, 25 - Vila Aurora, Serra Clara - SP",+55 99 2930-9241,False,False
+MOR191,Antônio Novais Albuquerque,706.016.967-95,1960-08-03,"Residencial Alexia da Rocha, 78 - Vila Aurora, Serra Clara - SP",,True,False
+MOR192,Arthur Miguel Mendonça Barros,797.837.689-31,2024-07-01,"Ladeira Isabella Marques, 931 - Vila Aurora, Serra Clara - SP",14 5314-5302,False,False
+MOR193,Carolina da Rosa da Rosa,760.342.365-18,1938-08-24,"Chácara Vieira, 8 - Vila Aurora, Serra Clara - SP",,False,False
+MOR194,Alexia Albuquerque Freitas,602.683.754-03,1961-06-14,"Setor Leonardo Albuquerque, 12 - Vila Aurora, Serra Clara - SP",13 6879-0112,True,False
+MOR195,Ana Vitória Caldeira Rodrigues,477.333.743-50,2010-10-15,"Setor Maria Fernanda Porto, 748 - Vila Aurora, Serra Clara - SP",+55 99 0267-1868,False,False
+MOR196,Valentim Borges Porto,304.461.811-89,1971-09-17,"Núcleo de Pereira, 19 - Vila Aurora, Serra Clara - SP",,False,False
+MOR197,Rafael Aparecida Martins,178.205.404-95,1957-10-31,"Vale de Barros, 679 - Vila Aurora, Serra Clara - SP",+55 43 0054-6598,False,False
+MOR198,Isis Farias Nogueira,687.078.443-45,1960-04-08,"Vila de Gonçalves, 6 - Vila Aurora, Serra Clara - SP",,False,True
+MOR199,Melina Costa da Cunha,367.512.725-71,1981-01-07,"Distrito Martins, 953 - Vila Aurora, Serra Clara - SP",+55 49 2963-4769,True,False
+MOR200,Stephany Gomes Almeida,651.747.260-61,1956-11-26,"Via de Camargo, 78 - Vila Aurora, Serra Clara - SP",+55 41 2415-7438,True,True

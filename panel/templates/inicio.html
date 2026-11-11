@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1>Painel de supervisão</h1>
+<p>Bem-vindo(a), <strong>{{ user }}</strong>. Perfil: <strong>{{ perfil }}</strong>
+   {% if modo == 'vulneravel' %}<span class="modo">ambiente de demonstração</span>{% endif %}</p>
+<div class="cartao">
+  <h2>O que você pode fazer</h2>
+  <ul>
+    <li><a href="{{ url_for('historico') }}">Consultar histórico de acessos</a></li>
+    <li><a href="{{ url_for('bomba') }}">Ver agendamentos das bombas</a>
+        {% if perfil in permissoes['bomba_alterar'] or modo == 'vulneravel' %}(com permissão para alterar){% endif %}</li>
+    {% if perfil in permissoes['usuarios'] or modo == 'vulneravel' %}<li><a href="{{ url_for('usuarios') }}">Gerenciar operadores</a></li>{% endif %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+[ ca ]
+default_ca = CA_default
+
+[ CA_default ]
+dir               = $ENV::PKI_INT_DIR
+database          = $dir/index.txt
+serial            = $dir/serial
+crlnumber         = $dir/crlnumber
+new_certs_dir     = $dir/newcerts
+certificate       = $dir/intermediate.crt
+private_key       = $dir/intermediate.key
+default_md        = sha256
+default_days      = 90
+default_crl_days  = 30
+crl_extensions    = crl_ext
+policy            = policy_loose
+unique_subject    = no
+copy_extensions   = none
+preserve          = no
+
+[ policy_loose ]
+organizationName       = optional
+organizationalUnitName = optional
+commonName             = supplied
+
+[ v3_intermediate ]
+basicConstraints       = critical, CA:TRUE, pathlen:0
+keyUsage               = critical, keyCertSign, cRLSign
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always
+
+[ device_cert ]
+basicConstraints       = critical, CA:FALSE
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = clientAuth
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid, issuer
+
+[ server_cert ]
+basicConstraints       = critical, CA:FALSE
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = serverAuth
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid, issuer
+subjectAltName         = $ENV::SAN
+
+[ crl_ext ]
+authorityKeyIdentifier = keyid:always

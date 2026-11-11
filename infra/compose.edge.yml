@@ -1,0 +1,115 @@
+networks:
+  field:
+    name: vila_field_${SITE}
+    internal: true
+  wan:
+    name: vila_wan
+    external: true
+  lte:
+    name: vila_lte
+    external: true
+
+volumes:
+  outbox:
+
+services:
+  broker:
+    image: eclipse-mosquitto:2.0
+    container_name: ${SITE}-broker
+    labels:
+      projeto: vila-aurora
+      camada: borda
+      espaco: ${SITE}
+      perfil: ${SITE_PROFILE}
+    entrypoint: ["/bin/sh", "/mosquitto/entrypoint.sh"]
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./edge/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./edge/mosquitto/entrypoint.sh:/mosquitto/entrypoint.sh:ro
+      - ../pki/out/sites/${SITE}/broker:/mosquitto/certs-ro:ro
+      - ../pki/out/monitor:/monitor:ro
+    networks: [field]
+    restart: unless-stopped
+
+  vpn:
+    build: ./wireguard
+    image: vila/vpn:1
+    container_name: ${SITE}-vpn
+    labels:
+      projeto: vila-aurora
+      camada: borda
+      espaco: ${SITE}
+    entrypoint: ["/bin/sh", "/usr/local/bin/edge-entrypoint.sh"]
+    cap_add: [NET_ADMIN]
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./wireguard/out/${SITE}:/wg:ro
+      - ./nftables/edge.nft:/etc/vila/firewall.nft:ro
+    networks: [field, wan, lte]
+    restart: unless-stopped
+
+  agent:
+    build: ../edge/agent
+    image: vila/agente:1
+    container_name: ${SITE}-agent
+    labels:
+      projeto: vila-aurora
+      camada: borda
+      espaco: ${SITE}
+    environment:
+      SITE: ${SITE}
+      TZ: ${TZ}
+      MQTT_HOST: broker
+      MQTT_PORT: "8883"
+      CERT_DIR: /certs
+      INGEST_URL: https://10.99.0.1:8443/ingest
+      DB_PATH: /data/outbox.sqlite
+      STATUS_PATH: /data/status.json
+    volumes:
+      - ../pki/out/sites/${SITE}/agent:/certs:ro
+      - outbox:/data
+    network_mode: "service:vpn"
+    depends_on: [vpn, broker]
+    restart: unless-stopped
+
+  ntp:
+    build: ./ntp
+    image: vila/chrony:1
+    container_name: ${SITE}-ntp
+    labels:
+      projeto: vila-aurora
+      camada: borda
+      espaco: ${SITE}
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./ntp/chrony-client.conf:/etc/chrony/chrony.conf:ro
+    network_mode: "service:vpn"
+    depends_on: [vpn]
+    restart: unless-stopped
+
+  sensores:
+    build: ../devices/simulators
+    image: vila/simuladores:1
+    container_name: ${SITE}-sensores
+    labels:
+      projeto: vila-aurora
+      camada: campo
+      espaco: ${SITE}
+    environment:
+      SITE: ${SITE}
+      MQTT_HOST: broker
+      MQTT_PORT: "8883"
+      CERT_DIR: /certs
+      INVENTARIO: /app/inventory.json
+      SIM_INTERVAL: "5"
+      TZ: ${TZ}
+    volumes:
+      - ../data/synthetic/output/crachas.csv:/dados/crachas.csv:ro
+      - ../devices/inventory.json:/app/inventory.json:ro
+      - ../pki/out/sites/${SITE}/devices:/certs:ro
+    networks: [field]
+    depends_on: [broker]
+    restart: unless-stopped

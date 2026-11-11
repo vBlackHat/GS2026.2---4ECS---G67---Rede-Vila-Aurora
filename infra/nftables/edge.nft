@@ -1,0 +1,13 @@
+table inet vila {
+	chain input {
+		type filter hook input priority filter; policy drop;
+		iif "lo" accept
+		ct state established,related accept
+		counter comment "entrada negada na borda"
+	}
+
+	chain forward {
+		type filter hook forward priority filter; policy drop;
+		counter comment "borda nao roteia"
+	}
+}

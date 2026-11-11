@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1>Agendamento das bombas de água</h1>
+<table>
+  <thead><tr><th>#</th><th>Espaço</th><th>Dispositivo</th><th>Início</th><th>Fim</th><th>Ativo</th><th>Atualizado por</th>
+  {% if pode_alterar %}<th>Alterar</th>{% endif %}</tr></thead>
+  <tbody>
+  {% for a in agendamentos %}
+    <tr>
+      <td>{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td>{{ a[3] }}</td><td>{{ a[4] }}</td>
+      <td>{{ 'sim' if a[5] else 'não' }}</td><td>{{ a[7]|e }}</td>
+      {% if pode_alterar %}
+      <td><form method="post" style="display:flex;gap:.3rem">
+        <input type="hidden" name="id" value="{{ a[0] }}">
+        <input name="inicio" value="{{ a[3] }}" size="5" aria-label="hora início">
+        <input name="fim" value="{{ a[4] }}" size="5" aria-label="hora fim">
+        <button type="submit">Salvar</button>
+      </form></td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

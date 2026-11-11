@@ -1,0 +1,13 @@
+vilaaurora.test:53 {
+    file /zonas/db.vilaaurora.test
+    log
+    errors
+}
+
+.:53 {
+    hosts {
+        fallthrough
+    }
+    forward . 1.1.1.1
+    cache
+}

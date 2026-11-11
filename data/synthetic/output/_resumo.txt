@@ -1,0 +1,8 @@
+DADOS SINTÉTICOS (Faker pt_BR, semente 2026)
+voluntarios.csv        40
+moradores.csv          200
+profissionais_ubs.csv  15
+usuarios_painel.csv    30  {'coordenacao': 3, 'tecnico': 5, 'auditor': 2, 'operador': 20}
+crachas.csv            55
+registros_acesso.csv   1146
+CPFs gerados: 255 | com dígito verificador válido: 0

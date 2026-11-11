@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1>Operadores do painel</h1>
+<table>
+  <thead><tr><th>Usuário</th><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Ativo</th></tr></thead>
+  <tbody>
+  {% for u in usuarios %}<tr><td>{{ u[0]|e }}</td><td>{{ u[1]|e }}</td><td>{{ u[2]|e }}</td><td>{{ u[3] }}</td><td>{{ 'sim' if u[4] else 'não' }}</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,10 @@
+$ORIGIN vilaaurora.test.
+$TTL 300
+@       IN SOA ns.vilaaurora.test. admin.vilaaurora.test. ( 2026110801 3600 600 86400 300 )
+@       IN NS  ns.vilaaurora.test.
+ns      IN A   10.40.0.2
+mail    IN A   10.40.0.3
+@       IN MX  10 mail.vilaaurora.test.
+@       IN TXT "v=spf1 ip4:10.40.0.5 -all"
+_dmarc  IN TXT "v=DMARC1; p=quarantine; rua=mailto:dmarc@vilaaurora.test; adkim=s; aspf=s; pct=100"
+__DKIM__

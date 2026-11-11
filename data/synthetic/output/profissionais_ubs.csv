@@ -1,0 +1,16 @@
+id,nome,cpf,cargo,registro_profissional,email,telefone
+UBS001,Benício Cunha Cirino,697.316.489-77,Médico(a),CRM-SP 119015,benicio.cirino@vilaaurora.test,92 0698-3419
+UBS002,Brayan da Costa Sousa,198.409.937-05,Agente comunitário de saúde,,brayan.sousa@vilaaurora.test,+55 73 7192-7243
+UBS003,Luigi Pimenta Moreira,749.622.459-62,Médico(a),CRM-SP 248383,luigi.moreira@vilaaurora.test,55 8670-3642
+UBS004,Maria Luiza Andrade Fonseca,047.184.807-70,Enfermeiro(a),COREN-SP 110996,maria.fonseca@vilaaurora.test,91 5540-8195
+UBS005,André Monteiro da Conceição,826.955.043-40,Técnico(a) de enfermagem,COREN-SP 948629,andre.conceicao@vilaaurora.test,+55 73 9239-1131
+UBS006,Melina Aparecida Teixeira,974.402.521-29,Agente comunitário de saúde,,melina.teixeira@vilaaurora.test,+55 27 5747-1966
+UBS007,Ísis Costa Campos,607.638.653-39,Técnico(a) de enfermagem,COREN-SP 696750,isis.campos@vilaaurora.test,12 9850-9342
+UBS008,Pedro Alves da Paz,190.470.876-59,Enfermeiro(a),COREN-SP 465109,pedro.paz@vilaaurora.test,+55 15 5418-7359
+UBS009,Lucca Nascimento Silveira,137.504.997-65,Técnico(a) de enfermagem,COREN-SP 961872,lucca.silveira@vilaaurora.test,19 6312-1277
+UBS010,Luiz Gustavo Lima Cavalcanti,916.226.249-13,Técnico(a) de enfermagem,COREN-SP 826877,luiz.cavalcanti@vilaaurora.test,88 0117-7446
+UBS011,Ester Caldeira Cavalcante,170.788.745-45,Farmacêutico(a),CRF-SP 33918,ester.cavalcante@vilaaurora.test,+55 77 9257-9081
+UBS012,Maria Eduarda Câmara Gomes,492.845.222-43,Agente comunitário de saúde,,maria.gomes@vilaaurora.test,+55 73 1841-5548
+UBS013,Liz Alves Siqueira,504.351.976-23,Técnico(a) de enfermagem,COREN-SP 777314,liz.siqueira@vilaaurora.test,0900 022 2324
+UBS014,Ana Sophia Leão Duarte,043.438.172-11,Enfermeiro(a),COREN-SP 954126,ana.duarte@vilaaurora.test,+55 11 5434-4253
+UBS015,Gabriel Teixeira Cavalcanti,168.399.568-66,Agente comunitário de saúde,,gabriel.cavalcanti@vilaaurora.test,+55 12 1412-9432

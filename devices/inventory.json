@@ -1,0 +1,27 @@
+{
+  "ubs": [
+    {"id": "ubs-camarafria-01", "tipo": "camara_fria"},
+    {"id": "ubs-energia-01", "tipo": "energia"},
+    {"id": "ubs-ar-01", "tipo": "qualidade_ar"},
+    {"id": "ubs-fechadura-vacinas", "tipo": "fechadura", "porta": "Sala de vacinas"}
+  ],
+  "escola": [
+    {"id": "escola-bomba-01", "tipo": "bomba"},
+    {"id": "escola-reservatorio-01", "tipo": "reservatorio", "bomba": "escola-bomba-01"},
+    {"id": "escola-energia-01", "tipo": "energia"},
+    {"id": "escola-fechadura-bombas", "tipo": "fechadura", "porta": "Casa de bombas"}
+  ],
+  "centro": [
+    {"id": "centro-energia-01", "tipo": "energia"},
+    {"id": "centro-fechadura-principal", "tipo": "fechadura", "porta": "Entrada principal"}
+  ],
+  "horta": [
+    {"id": "horta-energia-01", "tipo": "energia"},
+    {"id": "horta-reservatorio-01", "tipo": "reservatorio"}
+  ],
+  "abrigo": [
+    {"id": "abrigo-energia-01", "tipo": "energia", "gerador": true},
+    {"id": "abrigo-alagamento-01", "tipo": "alagamento"},
+    {"id": "abrigo-fechadura-principal", "tipo": "fechadura", "porta": "Entrada principal"}
+  ]
+}

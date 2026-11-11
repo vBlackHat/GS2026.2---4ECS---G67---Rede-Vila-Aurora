@@ -1,0 +1,331 @@
+networks:
+  wan:
+    name: vila_wan
+    ipam:
+      config:
+        - subnet: 10.250.1.0/24
+  lte:
+    name: vila_lte
+    ipam:
+      config:
+        - subnet: 10.250.2.0/24
+  svc:
+    name: vila_svc
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+    ipam:
+      config:
+        - subnet: 10.30.1.0/24
+  ops:
+    name: vila_ops
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+    ipam:
+      config:
+        - subnet: 10.30.2.0/24
+  admin:
+    name: vila_admin
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+    ipam:
+      config:
+        - subnet: 10.30.3.0/24
+  lab:
+    name: vila_lab
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.40.0.0/24
+
+volumes:
+  pgdata:
+  gophish_data:
+
+services:
+  vpn:
+    build: ./wireguard
+    image: vila/vpn:1
+    container_name: hub-vpn
+    labels:
+      projeto: vila-aurora
+      camada: hub
+    entrypoint: ["/bin/sh", "/usr/local/bin/hub-entrypoint.sh"]
+    cap_add: [NET_ADMIN]
+    sysctls:
+      net.ipv4.ip_forward: 1
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./wireguard/out/hub:/wg:ro
+      - ./nftables/hub.nft:/etc/vila/firewall.nft:ro
+    networks:
+      wan:
+        ipv4_address: 10.250.1.10
+      lte:
+        ipv4_address: 10.250.2.10
+      svc:
+        ipv4_address: 10.30.1.254
+      ops:
+        ipv4_address: 10.30.2.254
+      admin:
+        ipv4_address: 10.30.3.254
+    restart: unless-stopped
+
+  ntp:
+    build: ./ntp
+    image: vila/chrony:1
+    container_name: hub-ntp
+    labels:
+      projeto: vila-aurora
+      camada: hub
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./ntp/chrony-server.conf:/etc/chrony/chrony.conf:ro
+    network_mode: "service:vpn"
+    depends_on: [vpn]
+    restart: unless-stopped
+
+  ingest:
+    build: ../hub/ingest
+    image: vila/ingest:1
+    container_name: hub-ingest
+    labels:
+      projeto: vila-aurora
+      camada: hub
+    environment:
+      TZ: ${TZ}
+      PGHOST: hub-postgres
+      PGDATABASE: vila
+      PGUSER: vila_admin
+      PGPASSWORD: ${POSTGRES_ADMIN_PASSWORD}
+      BIND_ADDR: 10.99.0.1
+      CERT_DIR: /certs
+      CRL: /crl/crl.pem
+    volumes:
+      - ../pki/out/hub/ingest:/certs:ro
+      - ../pki/out/crl.pem:/crl/crl.pem:ro
+    network_mode: "service:vpn"
+    depends_on: [vpn, postgres]
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: hub-postgres
+    labels:
+      projeto: vila-aurora
+      camada: hub
+    environment:
+      POSTGRES_DB: vila
+      POSTGRES_USER: vila_admin
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD}
+      TZ: ${TZ}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      svc:
+        ipv4_address: 10.30.1.20
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vila_admin -d vila"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  bastion:
+    build: ./bastion
+    image: vila/bastion:1
+    container_name: hub-bastion
+    labels:
+      projeto: vila-aurora
+      camada: hub
+      zona: admin
+    cap_add: [NET_ADMIN]
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./bastion/out/ssh_host_ed25519_key:/segredos/ssh_host_ed25519_key:ro
+      - ./bastion/out/ssh_host_ed25519_key.pub:/segredos/ssh_host_ed25519_key.pub:ro
+      - ./bastion/out/admin_ed25519.pub:/segredos/admin_ed25519.pub:ro
+      - ./bastion/out/totp.secret:/segredos/totp.secret:ro
+    networks:
+      admin:
+        ipv4_address: 10.30.3.10
+    depends_on: [vpn]
+    restart: unless-stopped
+
+  admin-ws:
+    build: ./admin
+    image: vila/admin-ws:1
+    container_name: admin-ws
+    labels:
+      projeto: vila-aurora
+      camada: externo
+    cap_add: [NET_ADMIN]
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./wireguard/out/admin:/wg:ro
+      - ./bastion/out/admin_ed25519:/chaves/admin_ed25519:ro
+      - ./bastion/out/known_hosts:/chaves/known_hosts:ro
+    networks:
+      wan:
+        ipv4_address: 10.250.1.50
+    depends_on: [vpn]
+    restart: unless-stopped
+
+  painel:
+    build: ../panel
+    image: vila/painel:1
+    container_name: painel
+    labels:
+      projeto: vila-aurora
+      camada: ops
+      zona: ops
+    cap_add: [NET_ADMIN]
+    entrypoint: ["/bin/sh", "/app/entrypoint.sh"]
+    environment:
+      TZ: ${TZ}
+      PAINEL_MODO: corrigido
+      PGHOST: 10.30.1.20
+      PGDATABASE: painel
+      PGUSER: painel_ro
+      PGPASSWORD: ${PAINEL_SENHA_RO}
+      SECRET_KEY: ${PAINEL_SECRET_KEY}
+    networks:
+      ops:
+        ipv4_address: 10.30.2.20
+    depends_on: [vpn, postgres]
+    restart: unless-stopped
+
+  painel-vuln:
+    image: vila/painel:1
+    container_name: painel-vuln
+    labels:
+      projeto: vila-aurora
+      camada: ops
+      zona: ops
+    cap_add: [NET_ADMIN]
+    entrypoint: ["/bin/sh", "/app/entrypoint.sh"]
+    environment:
+      TZ: ${TZ}
+      PAINEL_MODO: vulneravel
+      PGHOST: 10.30.1.20
+      PGDATABASE: painel
+      PGUSER: painel_app
+      PGPASSWORD: ${PAINEL_SENHA_APP}
+      SECRET_KEY: ${PAINEL_SECRET_KEY}
+    networks:
+      ops:
+        ipv4_address: 10.30.2.21
+    depends_on: [vpn, postgres]
+    restart: unless-stopped
+
+  waf:
+    image: owasp/modsecurity-crs:nginx-alpine
+    container_name: waf
+    labels:
+      projeto: vila-aurora
+      camada: ops
+      zona: ops
+    environment:
+      TZ: ${TZ}
+      PORT: "8080"
+      BACKEND: http://10.30.2.21:8000
+      MODSEC_RULE_ENGINE: "On"
+      BLOCKING_PARANOIA: "1"
+      ANOMALY_INBOUND: "5"
+      ANOMALY_OUTBOUND: "4"
+      MODSEC_REQ_BODY_ACCESS: "On"
+      SERVER_NAME: painel.vilaaurora.test
+    networks:
+      ops:
+        ipv4_address: 10.30.2.10
+    depends_on: [painel-vuln]
+    restart: unless-stopped
+
+  ops-ws:
+    build: ../infra/attacker
+    image: vila/atacante:1
+    container_name: ops-ws
+    labels:
+      projeto: vila-aurora
+      camada: ops
+      zona: ops
+    environment:
+      TZ: ${TZ}
+    networks:
+      ops:
+        ipv4_address: 10.30.2.50
+    restart: unless-stopped
+
+  coredns:
+    image: coredns/coredns:1.11.3
+    container_name: coredns
+    command: ["-conf", "/Corefile"]
+    labels:
+      projeto: vila-aurora
+      camada: lab
+    volumes:
+      - ./dns/Corefile:/Corefile:ro
+      - ./dns/out:/zonas:ro
+    networks:
+      lab:
+        ipv4_address: 10.40.0.2
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: mailpit
+    labels:
+      projeto: vila-aurora
+      camada: lab
+    environment:
+      TZ: ${TZ}
+      MP_SMTP_AUTH_ACCEPT_ANY: "true"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+    networks:
+      lab:
+        ipv4_address: 10.40.0.3
+    restart: unless-stopped
+
+  mail-tools:
+    build: ./mail
+    image: vila/mail:1
+    container_name: mail-tools
+    labels:
+      projeto: vila-aurora
+      camada: lab
+    environment:
+      TZ: ${TZ}
+      IP_ORIGEM: 10.40.0.5
+    dns:
+      - 10.40.0.2
+    volumes:
+      - ./mail/out:/chaves
+      - ./mail/out:/saida
+      - gophish_data:/data
+      - ../data/synthetic/output:/dados:ro
+    networks:
+      lab:
+        ipv4_address: 10.40.0.5
+    depends_on: [coredns, mailpit]
+    restart: unless-stopped
+
+  gophish:
+    image: gophish/gophish:latest
+    container_name: gophish
+    user: "0:0"
+    labels:
+      projeto: vila-aurora
+      camada: lab
+    entrypoint: ["/bin/sh", "-c", "cp /config.json /opt/gophish/config.json && ./gophish"]
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./phishing/config.json:/config.json:ro
+      - gophish_data:/data
+    networks:
+      lab:
+        ipv4_address: 10.40.0.4
+    restart: unless-stopped
