@@ -330,6 +330,7 @@ def cmd_data() -> None:
         linhas = csv_file.read_text(encoding="utf-8").splitlines()
         blocks.append(f"### {csv_file.name} (primeiras linhas)\n" + "\n".join(linhas[:4]))
     out = ROOT / "docs" / "evidencias" / "B03_dados.txt"
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n\n".join(blocks), encoding="utf-8")
     print("\n\n".join(blocks[2:]))
     print(f"\nEvidência salva em {out.relative_to(ROOT)}")

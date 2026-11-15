@@ -17,9 +17,10 @@ livre** e **dados sintéticos**, em laboratório isolado.
 
 ## 1. Pré-requisitos
 
-- **Docker Desktop** (com Docker Compose v2) rodando. Recomendado **16 GB de RAM** para o Docker (mínimo ~8 GB).
-- **Python 3.11+** no host (o orquestrador `tasks.py` usa apenas a biblioteca padrão).
-- Sistema: Windows, macOS ou Linux. Em Windows, usar o WSL2 backend do Docker Desktop.
+- **Windows 10/11** com **Docker Desktop** instalado e em execução (inclui o Docker Compose v2).
+- Recomendado **16 GB de RAM** disponíveis para o Docker (mínimo ~8 GB).
+- **Python 3.11+** no Windows (o orquestrador `tasks.py` usa apenas a biblioteca padrão).
+- Comandos executados no **PowerShell**, na raiz do repositório.
 - Acesso à internet apenas para **baixar as imagens** (passo `pull`); a operação em si roda offline.
 
 Confira o ambiente:
