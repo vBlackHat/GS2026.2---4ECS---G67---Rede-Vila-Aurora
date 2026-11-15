@@ -86,7 +86,7 @@ PONTE_PERMITIDOS = {
     "check", "status", "logs", "up", "down", "pull", "sysctl", "ntp", "data", "mqtt", "cenario",
     "pki", "certs", "intruso", "revogar", "rotacionar", "wg", "link", "vpn", "agente", "teste-local",
     "failover", "acesso", "totp", "bastion", "segmentacao", "varredura", "firewall",
-    "painel", "sqli", "reteste", "waf", "rbac", "dns", "phishing", "cartilha",
+    "painel", "sqli", "reteste", "waf", "rbac", "dns", "phishing",
     "siem", "deteccao", "soar", "incidente", "forense", "anomalia", "llm",
     "metricas", "caos", "ota", "ripd", "wcag",
 }

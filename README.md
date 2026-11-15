@@ -42,6 +42,8 @@ python tasks.py pki         # 5. cria a CA e emite os certificados por dispositi
 python tasks.py wg          # 6. gera as chaves e configs WireGuard (hub + 5 espaços)
 python tasks.py acesso      # 7. gera as chaves SSH do bastion e o segredo TOTP
 python tasks.py up all      # 8. sobe o hub e os 5 nós de borda
+python tasks.py painel      # 9. carrega o banco do painel e sobe os painéis (vulnerável e corrigido) e o WAF
+python tasks.py llm preparar  # 10. prepara o assistente de IA local (usado no C6)
 ```
 
 Ao final, `python tasks.py status` deve listar os contêineres do projeto no ar. Para derrubar tudo:
@@ -50,21 +52,41 @@ Ao final, `python tasks.py status` deve listar os contêineres do projeto no ar.
 > Os segredos (`.env`, chaves, certificados, credenciais) ficam em pastas `out/` e **nunca são
 > versionados** (ver `.gitignore`). Cada clone gera os seus próprios.
 
+### Ver o painel no navegador (opcional)
+
+Por segurança, nenhuma porta do laboratório é publicada no Windows: o painel só existe na rede interna
+`vila_ops`. Para abri-lo no navegador, crie um acesso temporário, restrito a este computador:
+
+```powershell
+docker run --rm -d --name ver-painel --network vila_ops -p 127.0.0.1:8080:8080 -e PORT=8080 -e BACKEND=http://10.30.2.20:8000 owasp/modsecurity-crs:nginx-alpine
+```
+
+1. Acesse **http://localhost:8080** e entre com um usuário de `panel/out/credenciais.txt` (formato
+   `usuário | senha | perfil | segredo TOTP`; o perfil `coordenacao` vê todos os menus).
+2. Para o código MFA, cadastre o segredo TOTP em um app autenticador no celular (Google ou Microsoft
+   Authenticator → adicionar conta → inserir chave de configuração, tipo baseado em tempo) e digite o
+   código de 6 dígitos exibido.
+3. Ao terminar, encerre com `docker stop ver-painel`. Não execute `varredura` com esse acesso aberto:
+   a porta publicada apareceria na evidência B13.
+
 ## 3. Demonstração por critério de avaliação
 
 Cada comando executa a prova e salva a evidência em `docs/evidencias/`.
 
-| Critério | Comando(s) | O que demonstra |
-|----------|-----------|-----------------|
-| **C1** Arquitetura resiliente | `agente`, `failover ubs`, `caos 45` | Nó de borda autônomo, failover 4G, operação offline + reconciliação |
-| **C2** Identidade/VPN/segmentação | `certs`, `intruso`, `revogar <disp>`, `rotacionar <disp>`, `vpn`, `bastion teste`, `segmentacao`, `varredura` | mTLS por dispositivo, revogação, VPN+MFA, zonas, nenhuma porta admin exposta |
-| **C3** SQL Injection | `sqli`, `reteste`, `waf` | Exploração → correção na causa raiz → WAF |
-| **C4** Phishing | `dns`, `phishing`, `cartilha` | SPF/DKIM/DMARC, campanha simulada + métricas, conscientização |
-| **C5** Detecção/resposta/forense | `siem`, `deteccao`, `soar`, `incidente`, `forense` | SIEM, 4 regras + MTTD, SOAR com aprovação humana, laudo forense |
-| **C6** IA & Cyber | `anomalia`, `llm` | Isolation Forest com métricas; LLM local com guardrails (10 testes) |
-| **C7** Métricas/continuidade | `caos 45`, `metricas` | Disponibilidade, MTTD/MTTR, operação autônoma, perda de dados, recursos |
-| **C8** Custos/privacidade/acessib. | `ripd`, `wcag` | Pseudonimização HMAC; auditoria WCAG 2.1 AA do painel |
-| **Diferenciais** | `ota` | Atualização OTA assinada com Ed25519 (aceita íntegra, recusa adulterada) |
+| Critério | Comando(s) | Evidência | O que demonstra |
+|----------|-----------|-----------|-----------------|
+| **C1** Arquitetura resiliente | `agente`, `failover ubs`, `caos 45` | B08, B09, B30 | Nó de borda autônomo, failover 4G, operação offline + reconciliação |
+| **C2** Identidade/VPN/segmentação | `certs`, `intruso`, `revogar <disp>`, `rotacionar <disp>`, `vpn`, `bastion teste`, `segmentacao`, `varredura`, `rbac` | B05–B07, B10–B13, B17 | mTLS por dispositivo, revogação, VPN+MFA, zonas, nenhuma porta admin exposta, MFA e perfis no painel |
+| **C3** SQL Injection | `sqli`, `reteste`, `waf` | B14–B16 | Exploração → correção na causa raiz → WAF |
+| **C4** Phishing | `dns`, `phishing` | B18, B19 | SPF/DKIM/DMARC, campanha simulada + métricas |
+| **C5** Detecção/resposta/forense | `ntp`, `siem`, `deteccao`, `soar`, `incidente`, `forense` | B02, B21–B25 | Logs sincronizados, SIEM, 4 regras + MTTD, SOAR com aprovação humana, laudo forense |
+| **C6** IA & Cyber | `anomalia`, `llm` | B26, B27 | Isolation Forest com métricas; LLM local com guardrails (10 testes) |
+| **C7** Métricas/continuidade | `caos 45`, `metricas` | B30, B29 | Disponibilidade, MTTD/MTTR, operação autônoma, perda de dados, recursos |
+| **C8** Custos/privacidade/acessib. | `ripd`, `wcag` | B31, B33 | Pseudonimização HMAC; auditoria WCAG 2.1 AA do painel |
+| **Diferenciais** | `ota` | B34 | Atualização OTA assinada com Ed25519 (aceita íntegra, recusa adulterada) |
+
+O passo a passo de cada critério (o que a rubrica pede, qual comando prova e o que procurar em cada
+evidência) está em [`AVALIACAO.md`](AVALIACAO.md).
 
 Exemplo:
 
@@ -85,8 +107,7 @@ pki/                     Scripts da CA / PKI do projeto.
 ai/anomaly/              Detecção de anomalias (Isolation Forest).
 ai/llm-assistant/        Assistente LLM + guardrails + testes de injeção.
 data/                    Geração de dados sintéticos (Faker pt_BR).
-docs/evidencias/         Evidências geradas por cada comando.
-docs/relatorios/         Seções e PDFs dos relatórios (E1, E3, E4).
+docs/evidencias/         Evidências geradas por cada comando (local, fora do Git).
 ```
 
 ## 5. Segurança, ética e privacidade
