@@ -69,6 +69,22 @@ docker run --rm -d --name ver-painel --network vila_ops -p 127.0.0.1:8080:8080 -
 3. Ao terminar, encerre com `docker stop ver-painel`. Não execute `varredura` com esse acesso aberto:
    a porta publicada apareceria na evidência B13.
 
+### Ver os e-mails da campanha (opcional)
+
+O Mailpit, caixa de entrada de teste dos e-mails do domínio fictício, também fica só na rede interna
+`vila_lab`. O acesso temporário segue a mesma ideia do painel; como essa rede não permite publicar
+portas, o contêiner sobe na rede padrão e depois é ligado a ela:
+
+```powershell
+docker run --rm -d --name ver-email -p 127.0.0.1:8025:8080 -e PORT=8080 -e BACKEND=http://10.40.0.3:8025 -e MODSEC_RULE_ENGINE=Off owasp/modsecurity-crs:nginx-alpine
+docker network connect vila_lab ver-email
+```
+
+Acesse **http://localhost:8025**. Os dois e-mails do teste de SPF/DKIM/DMARC aparecem depois do
+`dns`, e os 30 da campanha simulada depois do `phishing`. Se a lista não atualizar sozinha, recarregue
+a página. Ao terminar, encerre com `docker stop ver-email` (e, como no painel, não execute `varredura`
+com esse acesso aberto).
+
 ## 3. Demonstração por critério de avaliação
 
 Cada comando executa a prova e salva a evidência em `docs/evidencias/`.

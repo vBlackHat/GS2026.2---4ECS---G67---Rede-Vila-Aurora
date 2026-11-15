@@ -47,7 +47,7 @@ Antes: `python tasks.py painel`.
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
 | SPF/DKIM/DMARC corretos | `dns` | `B18_dns_email.txt` | Registros publicados; e-mail legítimo `dmarc=pass` → aceitar; forjado `dmarc=fail` → quarentena |
-| Simulação ética com métricas | `phishing` | `B19_phishing.txt` | Enviados, abertos, cliques, submissões e reportes, só contas fictícias; e-mails no Mailpit |
+| Simulação ética com métricas | `phishing` | `B19_phishing.txt` | Enviados, abertos, cliques, submissões e reportes, só contas fictícias; e-mails no Mailpit (para vê-los no navegador, README, seção "Ver os e-mails da campanha") |
 | Conscientização adaptada (voz clonada, verificação fora de banda) | — | E1 | Seção de ameaças potencializadas por IA, orientação aos voluntários |
 
 ## C5 · Detecção, resposta e forense (RT-12 a RT-15) — 1,5 pt
@@ -94,3 +94,11 @@ Ambiente reproduzível pelo README (seção 2), relatórios E1, E3 e E4 e vídeo
 | Comando | Evidência | O que procurar |
 |---|---|---|
 | `ota` | `B34_ota.txt` | Pacote íntegro aplicado; pacote adulterado e chave não confiável recusados |
+
+## Se algo falhar
+
+| Sintoma | Causa provável | O que fazer |
+|---|---|---|
+| `B18_dns_email.txt` com `SERVFAIL` e `spf=temperror` | O CoreDNS subiu no `up all` antes de o arquivo do domínio existir | `docker restart coredns` e repetir o `dns` |
+| `agente` com `"hub_online": false` mesmo com os links no ar, ou `anomalia` com 0 leituras | A ingestão do hub ficou presa à rede antiga da VPN do hub depois de esta ser recriada | `docker rm -f hub-ingest` e `python tasks.py up hub`; as filas das bordas são reenviadas sem perda |
+| `B21_siem.txt` sem a fonte `vpn` | O coletor lê as últimas 3 h de log, e a VPN só registra eventos quando um link cai ou volta | Rodar o `siem` até 3 h depois de um `failover ubs` |
