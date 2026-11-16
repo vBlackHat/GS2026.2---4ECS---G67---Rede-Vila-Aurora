@@ -21,7 +21,7 @@ livre** e **dados sintéticos**, em laboratório isolado.
 - Recomendado **16 GB de RAM** disponíveis para o Docker (mínimo ~8 GB).
 - **Python 3.11+** no Windows (o orquestrador `tasks.py` usa apenas a biblioteca padrão).
 - Comandos executados no **PowerShell**, na raiz do repositório.
-- Acesso à internet apenas para **baixar as imagens** (passo `pull`); a operação em si roda offline.
+- Acesso à internet para **baixar as imagens** (passo `pull`) e as bibliotecas usadas na geração de dados e na construção de algumas imagens; a operação em si roda offline.
 
 Confira o ambiente:
 
@@ -66,8 +66,7 @@ docker run --rm -d --name ver-painel --network vila_ops -p 127.0.0.1:8080:8080 -
 2. Para o código MFA, cadastre o segredo TOTP em um app autenticador no celular (Google ou Microsoft
    Authenticator → adicionar conta → inserir chave de configuração, tipo baseado em tempo) e digite o
    código de 6 dígitos exibido.
-3. Ao terminar, encerre com `docker stop ver-painel`. Não execute `varredura` com esse acesso aberto:
-   a porta publicada apareceria na evidência B13.
+3. Ao terminar, encerre com `docker stop ver-painel`.
 
 ### Ver os e-mails da campanha (opcional)
 
@@ -82,8 +81,7 @@ docker network connect vila_lab ver-email
 
 Acesse **http://localhost:8025**. Os dois e-mails do teste de SPF/DKIM/DMARC aparecem depois do
 `dns`, e os 30 da campanha simulada depois do `phishing`. Se a lista não atualizar sozinha, recarregue
-a página. Ao terminar, encerre com `docker stop ver-email` (e, como no painel, não execute `varredura`
-com esse acesso aberto).
+a página. Ao terminar, encerre com `docker stop ver-email`.
 
 ## 3. Demonstração por critério de avaliação
 

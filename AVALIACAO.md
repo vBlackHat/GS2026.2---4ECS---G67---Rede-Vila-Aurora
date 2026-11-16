@@ -5,8 +5,8 @@ tabela indica o comando que a prova, o arquivo de evidência gerado em `docs/evi
 procurar nele. O ambiente precisa estar no ar (README, seção 2).
 
 **Ordem sugerida:** `ntp` → C1 rápidos (`agente`, `failover`) → C2 → `painel` → C3 → C4 → C5
-(`siem` antes de `deteccao`; `forense` por último) → C6 (`llm preparar` uma vez antes de `llm testar`)
-→ C8 → `caos 45` → `metricas`. O `caos` leva ~50 min; deixe o computador sem hibernar.
+(`siem` antes de `deteccao`) → C6 (`llm preparar` uma vez antes de `llm testar`)
+→ C8 → `caos 45` → `metricas` → `forense` (por último, para cobrir todas as evidências). O `caos` leva ~50 min; deixe o computador sem hibernar.
 
 ---
 
@@ -46,7 +46,7 @@ Antes: `python tasks.py painel`.
 
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
-| SPF/DKIM/DMARC corretos | `dns` | `B18_dns_email.txt` | Registros publicados; e-mail legítimo `dmarc=pass` → aceitar; forjado `dmarc=fail` → quarentena |
+| SPF/DKIM/DMARC corretos | `dns` | `B18_dns_email.txt` | Registros publicados; e-mail legítimo `dmarc=pass` → aceitar; forjado `dmarc=fail` → veredito de quarentena (o script registra o veredito; as duas mensagens chegam ao Mailpit) |
 | Simulação ética com métricas | `phishing` | `B19_phishing.txt` | Enviados, abertos, cliques, submissões e reportes, só contas fictícias; e-mails no Mailpit (para vê-los no navegador, README, seção "Ver os e-mails da campanha") |
 | Conscientização adaptada (voz clonada, verificação fora de banda) | — | E1 | Ameaças potencializadas por IA (seção 6) e orientação e plano de conscientização dos voluntários (seção 6.4) |
 
