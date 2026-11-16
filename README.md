@@ -118,7 +118,9 @@ python tasks.py caos 45     # teste de caos de 45 minutos
 tasks.py                 Orquestrador (um comando por prova). python tasks.py -h lista tudo.
 infra/                   Compose (hub e borda), nftables, WireGuard, DNS, mail, OTA, WCAG, etc.
 panel/                   Painel de supervisão (Flask): versões vulnerável e corrigida, RBAC, MFA.
-edge/                    Agente de borda (store-and-forward), simulador de sensores.
+edge/                    Agente de borda (store-and-forward e regras locais).
+devices/                 Inventário e simulador dos dispositivos de cada espaço.
+hub/                     Serviço de ingestão do hub (HTTPS com mTLS, só no túnel).
 pki/                     Scripts da CA / PKI do projeto.
 ai/anomaly/              Detecção de anomalias (Isolation Forest).
 ai/llm-assistant/        Assistente LLM + guardrails + testes de injeção.

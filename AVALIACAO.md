@@ -14,7 +14,7 @@ procurar nele. O ambiente precisa estar no ar (README, seção 2).
 
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
-| Nó de borda autônomo por espaço | `agente` | `B08_agente_ubs.txt` | `"mqtt_conectado": true`, `"hub_online": true`, `"fila_pendente": 0`; tabela final com eventos dos 5 espaços |
+| Nó de borda autônomo por espaço | `agente` | `B08_agente_ubs.txt` | `"mqtt_conectado": true`, `"hub_online": true`, `"fila_pendente": 0`; tabela final com eventos dos 5 espaços (se aparecer `false` com os links no ar, ver "Se algo falhar") |
 | Operação local comprovada | `caos 45` (ou `teste-local ubs 3`, versão curta) | `B30_caos.txt` (`B08_operacao_local_ubs.txt`) | Linha do tempo com `hub=False`, `fila` crescendo e `al=1`; `perda_dados_reconciliacao: 0`. No `B08_operacao_local_ubs.txt`, a linha `ALARME LOCAL ATIVADO` mostra o alarme decidido na borda com o hub inacessível |
 | Redundância proporcional | `failover ubs` | `B09_failover_ubs.txt` | `LINK: FAILOVER fibra -> 4g` e depois `fibra restabelecida`; coluna `perdidos` = 0 |
 | Trade-offs justificados | — | E1 | Tabela de decisões e trade-offs (seção 3) e plano de redundância proporcional (seção 4) |
@@ -73,7 +73,7 @@ Antes: `python tasks.py painel`.
 
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
-| Teste de caos ≥ 30 min | `caos 45` | `B30_caos.txt` | 45 min com `hub=False` nos 5 espaços, disponibilidade local 100% e perda 0. O MTTD calculado por este script tem uma limitação descrita no E1 (seção 7.1); o MTTD local de referência está no `B08_operacao_local_ubs.txt` |
+| Teste de caos ≥ 30 min | `caos 45` | `B30_caos.txt` | Linha do tempo com `hub=False` nos 5 espaços durante a queda (43 min contados como operação autônoma), disponibilidade local 100% e perda 0. O MTTD calculado por este script tem uma limitação descrita no E1 (seção 7.1); o MTTD local de referência está no `B08_operacao_local_ubs.txt` |
 | Todos os indicadores do RT-22 | `metricas` (depois do `caos`) | `B29_metricas.txt` | Disponibilidade, MTTD/MTTR, autonomia, perda, CPU, memória, banda e energia (sobre o MTTD, ver a linha anterior) |
 | Análise crítica | — | E1 | Análise crítica das métricas e limitações (seção 7) |
 
