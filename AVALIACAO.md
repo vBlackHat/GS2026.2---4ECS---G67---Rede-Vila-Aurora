@@ -15,9 +15,9 @@ procurar nele. O ambiente precisa estar no ar (README, seção 2).
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
 | Nó de borda autônomo por espaço | `agente` | `B08_agente_ubs.txt` | `"mqtt_conectado": true`, `"hub_online": true`, `"fila_pendente": 0`; tabela final com eventos dos 5 espaços |
-| Operação local comprovada | `caos 45` (ou `teste-local ubs 3`, versão curta) | `B30_caos.txt` (`B08_operacao_local_ubs.txt`) | Linha do tempo com `hub=False`, `fila` crescendo e `al=1`; `perda_dados_reconciliacao: 0` |
+| Operação local comprovada | `caos 45` (ou `teste-local ubs 3`, versão curta) | `B30_caos.txt` (`B08_operacao_local_ubs.txt`) | Linha do tempo com `hub=False`, `fila` crescendo e `al=1`; `perda_dados_reconciliacao: 0`. No `B08_operacao_local_ubs.txt`, a linha `ALARME LOCAL ATIVADO` mostra o alarme decidido na borda com o hub inacessível |
 | Redundância proporcional | `failover ubs` | `B09_failover_ubs.txt` | `LINK: FAILOVER fibra -> 4g` e depois `fibra restabelecida`; coluna `perdidos` = 0 |
-| Trade-offs justificados | — | E1 | Tabela de decisões e seção "Sem redundância — e por quê" |
+| Trade-offs justificados | — | E1 | Tabela de decisões e trade-offs (seção 3) e plano de redundância proporcional (seção 4) |
 
 ## C2 · Identidade, VPN e segmentação (RT-04 a RT-07, RT-09) — 1,5 pt
 
@@ -48,7 +48,7 @@ Antes: `python tasks.py painel`.
 |---|---|---|---|
 | SPF/DKIM/DMARC corretos | `dns` | `B18_dns_email.txt` | Registros publicados; e-mail legítimo `dmarc=pass` → aceitar; forjado `dmarc=fail` → quarentena |
 | Simulação ética com métricas | `phishing` | `B19_phishing.txt` | Enviados, abertos, cliques, submissões e reportes, só contas fictícias; e-mails no Mailpit (para vê-los no navegador, README, seção "Ver os e-mails da campanha") |
-| Conscientização adaptada (voz clonada, verificação fora de banda) | — | E1 | Seção de ameaças potencializadas por IA, orientação aos voluntários |
+| Conscientização adaptada (voz clonada, verificação fora de banda) | — | E1 | Ameaças potencializadas por IA (seção 6) e orientação e plano de conscientização dos voluntários (seção 6.4) |
 
 ## C5 · Detecção, resposta e forense (RT-12 a RT-15) — 1,5 pt
 
@@ -57,7 +57,7 @@ Antes: `python tasks.py painel`.
 | Logs sincronizados | `ntp` | `B02_ntp.txt` | Fontes sincronizadas com o servidor NTP do hub |
 | Logs centralizados | `siem` | `B21_siem.txt` | Eventos por fonte (dispositivos, broker, VPN, web, banco, SO) |
 | Quatro regras funcionando | `deteccao` | `B22_deteccao.txt` | 4 linhas na tabela de alertas, cada uma com alertas > 0 e MTTD |
-| Baixo risco automático, alto impacto com aprovação humana | `soar` | `B23_soar.txt` | Ações `baixo` → `executado`; ação `alto` → `aguardando_aprovacao` e depois `aprovado_e_executado` com MFA |
+| Baixo risco automático, alto impacto com aprovação humana | `soar` | `B23_soar.txt` | Ações `baixo` registradas como `executado`; ação `alto` → `aguardando_aprovacao` e depois `aprovado_e_executado` com MFA. A fila registra a decisão, e a execução é feita pelos comandos `revogar` e `link` (E3, seção 10.2) |
 | Linha do tempo no ATT&CK | `incidente` | `B24_incidente.txt` | Cadeia do INC-VA-0712 com hora, fase e técnica ATT&CK |
 | Laudo com hash e custódia | `forense` (rodar por último) | `B25_forense.txt` | Tabela arquivo, bytes e SHA-256 de todas as evidências; laudo completo no E4 |
 
@@ -67,15 +67,15 @@ Antes: `python tasks.py painel`.
 |---|---|---|---|
 | IA defensiva com métricas medidas | `anomalia` | `B26_anomalia.txt` | Precisão, revocação, F1 e falsos positivos |
 | Guardrails testados contra prompt injection | `llm preparar` (uma vez) e `llm testar` | `B27_llm_guardrails.txt` | 10 testes `=> PASSOU`; LLM só na rede `vila_ai` |
-| OWASP LLM/ATLAS e ameaças por IA | — | E1 e E3 | Mapeamento OWASP LLM Top 10 / MITRE ATLAS e tabela ameaça → controle |
+| OWASP LLM/ATLAS e ameaças por IA | — | E1 e E3 | Mapeamento OWASP LLM Top 10 / MITRE ATLAS (E3, seção 11) e tabela ameaça → controle (E1, seção 6.3) |
 
 ## C7 · Métricas e continuidade (RT-22, RT-23) — 0,5 pt
 
 | Rubrica | Comando | Evidência | O que procurar |
 |---|---|---|---|
-| Teste de caos ≥ 30 min | `caos 45` | `B30_caos.txt` | 45 min offline nos 5 espaços; MTTD local por espaço; perda 0 |
-| Todos os indicadores do RT-22 | `metricas` (depois do `caos`) | `B29_metricas.txt` | Disponibilidade, MTTD/MTTR, autonomia, perda, CPU, memória, banda e energia |
-| Análise crítica | — | E1 | Seção de análise de métricas e limitações |
+| Teste de caos ≥ 30 min | `caos 45` | `B30_caos.txt` | 45 min com `hub=False` nos 5 espaços, disponibilidade local 100% e perda 0. O MTTD calculado por este script tem uma limitação descrita no E1 (seção 7.1); o MTTD local de referência está no `B08_operacao_local_ubs.txt` |
+| Todos os indicadores do RT-22 | `metricas` (depois do `caos`) | `B29_metricas.txt` | Disponibilidade, MTTD/MTTR, autonomia, perda, CPU, memória, banda e energia (sobre o MTTD, ver a linha anterior) |
+| Análise crítica | — | E1 | Análise crítica das métricas e limitações (seção 7) |
 
 ## C8 · Custos, privacidade, acessibilidade e manutenção (RT-19 a RT-21) — 0,5 pt
 
@@ -83,7 +83,7 @@ Antes: `python tasks.py painel`.
 |---|---|---|---|
 | RIPD coerente com a LGPD | `ripd` | `B31_pseudonimizacao.txt` | Registros de acesso com pseudônimo HMAC no lugar do identificador |
 | Painel acessível | `wcag` | `B33_wcag.txt` | `TOTAL: criticos=0 serios=0` nas telas do painel |
-| Custos e manutenção com responsáveis | — | E1 | Tabelas de custo (12 meses) e plano de manutenção |
+| Custos e manutenção com responsáveis | — | E1 | Tabelas de custo de implantação e de 12 meses de operação e plano de manutenção (seção 9) |
 
 ## C9 · Comunicação e documentação — 0,5 pt
 
