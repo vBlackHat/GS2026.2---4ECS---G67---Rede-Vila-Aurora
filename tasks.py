@@ -3,9 +3,9 @@
 Uso:  python tasks.py <comando> [alvo]
 
 Comandos:
-  check                 Confere pré-requisitos (Docker, Compose, memória, vm.max_map_count)
+  check                 Confere pré-requisitos (Docker, Compose, memória, .env)
   init                  Cria o arquivo .env com segredos aleatórios
-  sysctl                Ajusta vm.max_map_count=262144 na VM do Docker
+  sysctl                Ajusta vm.max_map_count=262144 na VM do Docker (opcional)
   pull                  Baixa as imagens e o modelo do LLM
   up [hub|edges|all]    Sobe o ambiente (padrão: all)
   down [hub|edges|all]  Derruba o ambiente (padrão: all)
@@ -105,9 +105,6 @@ IMAGES = [
     "coredns/coredns:1.11.3",
     "instrumentisto/nmap:latest",
     "ollama/ollama:latest",
-    "wazuh/wazuh-manager:4.14.9",
-    "wazuh/wazuh-indexer:4.14.9",
-    "wazuh/wazuh-dashboard:4.14.9",
 ]
 LLM_MODEL = "llama3.2:3b"
 
@@ -181,19 +178,10 @@ def cmd_check() -> None:
         if gb >= 14:
             ok(f"Memória disponível para o Docker: {gb:.1f} GB")
         else:
-            warn(f"Docker tem só {gb:.1f} GB. Recomendado: 16 GB (ver README)")
-            all_good = False
+            warn(f"Docker tem {gb:.1f} GB. Recomendado: 16 GB; com menos, rode llm e caos com o resto parado")
     else:
         fail("Docker não está rodando")
         sys.exit(1)
-
-    r = run(["docker", "run", "--rm", "alpine:3.20", "cat", "/proc/sys/vm/max_map_count"],
-            check=False, capture=True)
-    if r.returncode == 0 and int(r.stdout.strip() or 0) >= 262144:
-        ok(f"vm.max_map_count = {r.stdout.strip()}")
-    else:
-        warn("vm.max_map_count abaixo de 262144. Rode: python tasks.py sysctl")
-        all_good = False
 
     if ENV_FILE.exists():
         ok(".env presente")
@@ -1159,6 +1147,9 @@ CREATE TABLE IF NOT EXISTS eventos (
     id BIGSERIAL PRIMARY KEY, ts TIMESTAMPTZ NOT NULL, fonte TEXT NOT NULL,
     host TEXT, severidade TEXT NOT NULL DEFAULT 'info', mensagem TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS eventos_fonte_ts ON eventos (fonte, ts);
+DELETE FROM eventos a USING eventos b
+  WHERE a.id > b.id AND a.ts = b.ts AND a.host IS NOT DISTINCT FROM b.host AND a.mensagem = b.mensagem;
+CREATE UNIQUE INDEX IF NOT EXISTS eventos_unico ON eventos (ts, host, md5(mensagem));
 CREATE TABLE IF NOT EXISTS alertas (
     id BIGSERIAL PRIMARY KEY, detectado_em TIMESTAMPTZ NOT NULL DEFAULT now(),
     regra TEXT NOT NULL, severidade TEXT NOT NULL, fonte TEXT, host TEXT,
@@ -1168,6 +1159,9 @@ CREATE TABLE IF NOT EXISTS soar_acoes (
     regra TEXT, acao TEXT NOT NULL, risco TEXT NOT NULL, status TEXT NOT NULL,
     aprovado_por TEXT, detalhe TEXT);
 """
+
+SIEM_RETENCAO = "90 days"     # retenção dos eventos centralizados (E1, seção 8.3)
+SIEM_JANELA = "180 minutes"   # janela avaliada pelas regras de detecção (a mesma da coleta)
 
 SIEM_FONTES = {
     "dispositivos": [f"{x}-sensores" for x in SITES],
@@ -1236,19 +1230,26 @@ def siem_coletar() -> dict:
             msg = f"auditoria painel: usuario={p[1]} perfil={p[2]} acao={p[3]} detalhe={p[4]} ip={p[5]}"
             linhas_tsv.write(f"{p[0]}\tweb\tpainel\t{severidade(p[3] + p[4])}\t{msg[:500]}\n")
             contagem["web"] = contagem.get("web", 0) + 1
-    run(["docker", "exec", "hub-postgres", "psql", "-U", "vila_admin", "-d", "siem", "-c", "TRUNCATE eventos"],
-        check=False, capture=True)
-    run(["docker", "exec", "-i", "hub-postgres", "psql", "-U", "vila_admin", "-d", "siem", "-c",
-         "COPY eventos (ts, fonte, host, severidade, mensagem) FROM STDIN"],
-        check=False, capture=True, _input=linhas_tsv.getvalue())
+    # Acumula os eventos sem apagar a base: duplicados são ignorados e o que passa da retenção sai.
+    run(["docker", "exec", "-i", "hub-postgres", "psql", "-U", "vila_admin", "-d", "siem"],
+        check=False, capture=True, _input=siem_script_carga(linhas_tsv.getvalue()))
     return contagem
+
+
+def siem_script_carga(tsv: str) -> str:
+    return ("CREATE TEMP TABLE novos (ts TIMESTAMPTZ, fonte TEXT, host TEXT, severidade TEXT, mensagem TEXT);\n"
+            "COPY novos FROM STDIN;\n" + tsv + "\\.\n"
+            "INSERT INTO eventos (ts, fonte, host, severidade, mensagem) "
+            "SELECT ts, fonte, host, severidade, mensagem FROM novos ON CONFLICT DO NOTHING;\n"
+            f"DELETE FROM eventos WHERE ts < now() - interval '{SIEM_RETENCAO}';\n")
 
 
 def cmd_siem(acao: str = "status") -> None:
     siem_preparar()
     contagem = siem_coletar()
     blocos = ["SIEM do laboratório: coletor em Python centraliza os logs das fontes no PostgreSQL (base 'siem').",
-              "Fontes exigidas pelo RT-12: dispositivos, broker, VPN, web, banco de dados e sistema operacional."]
+              "Fontes exigidas pelo RT-12: dispositivos, broker, VPN, web, banco de dados e sistema operacional.",
+              "Retenção: eventos acumulados sem duplicação e mantidos por 90 dias."]
     tabela = psql_db("siem", "SELECT fonte, count(*) AS eventos, min(ts) AS primeiro, max(ts) AS ultimo "
                      "FROM eventos GROUP BY fonte ORDER BY fonte")
     blocos.append("### Eventos centralizados por fonte\n" + tabela)
@@ -1310,7 +1311,8 @@ def cmd_deteccao(acao: str = "status") -> None:
     for regra, (titulo, sev, cond) in REGRAS.items():
         psql_db("siem", f"INSERT INTO alertas (regra, severidade, fonte, host, detalhe, evento_ts, mttd_seg) "
                 f"SELECT '{regra}', '{sev}', fonte, host, left(mensagem,120), ts, "
-                f"round(EXTRACT(EPOCH FROM (now() - ts))::numeric, 1) FROM eventos WHERE {cond}")
+                f"round(EXTRACT(EPOCH FROM (now() - ts))::numeric, 1) FROM eventos "
+                f"WHERE ts >= now() - interval '{SIEM_JANELA}' AND ({cond})")
     blocos = ["Detecção: 4 regras do RT-13 avaliadas sobre os eventos centralizados no SIEM.",
               "MTTD = tempo entre o evento e a geração do alerta (SIEM em lote)."]
     resumo = psql_db("siem", "SELECT regra, count(*) AS alertas, round(avg(mttd_seg),1) AS mttd_medio_seg, "

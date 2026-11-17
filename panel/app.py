@@ -85,8 +85,7 @@ def login():
             return render_template("login.html", erro=_erro(exc)), 500
         if linha and linha[4] and seguranca.conferir_senha(senha, linha[2]):
             session.clear()
-            session.update(auth=True, user=linha[0], perfil=linha[1],
-                           mfa_ok=not MFA_ATIVO, _secret=linha[3])
+            session.update(auth=True, user=linha[0], perfil=linha[1], mfa_ok=not MFA_ATIVO)
             auditar(linha[0], linha[1], "login_ok", f"modo={MODO}")
             return redirect(url_for("mfa") if MFA_ATIVO else url_for("inicio"))
         auditar(usuario, None, "login_falha", "")
@@ -101,7 +100,14 @@ def mfa():
     if not MFA_ATIVO:
         return redirect(url_for("inicio"))
     if request.method == "POST":
-        if seguranca.conferir_totp(session.get("_secret", ""), request.form.get("codigo", "")):
+        # O segredo TOTP fica só no banco: o cookie de sessão é assinado, mas não cifrado.
+        try:
+            with conectar() as c, c.cursor() as cur:
+                linha = consultas.autenticar(cur, session.get("user", ""))
+        except Exception as exc:
+            return render_template("mfa.html", erro=_erro(exc)), 500
+        segredo = linha[3] if linha and linha[4] else ""
+        if segredo and seguranca.conferir_totp(segredo, request.form.get("codigo", "")):
             session["mfa_ok"] = True
             auditar(session.get("user"), session.get("perfil"), "mfa_ok", "")
             return redirect(url_for("inicio"))

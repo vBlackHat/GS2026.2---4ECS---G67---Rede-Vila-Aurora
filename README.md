@@ -35,15 +35,14 @@ Execute na ordem (cada passo é idempotente):
 
 ```bash
 python tasks.py init        # 1. gera o .env com segredos aleatórios
-python tasks.py sysctl      # 2. ajusta vm.max_map_count (uma vez por boot do Docker)
-python tasks.py pull        # 3. baixa as imagens e o modelo do LLM (llama3.2:3b)
-python tasks.py data        # 4. gera os dados sintéticos (Faker pt_BR)
-python tasks.py pki         # 5. cria a CA e emite os certificados por dispositivo
-python tasks.py wg          # 6. gera as chaves e configs WireGuard (hub + 5 espaços)
-python tasks.py acesso      # 7. gera as chaves SSH do bastion e o segredo TOTP
-python tasks.py up all      # 8. sobe o hub e os 5 nós de borda
-python tasks.py painel      # 9. carrega o banco do painel e sobe os painéis (vulnerável e corrigido) e o WAF
-python tasks.py llm preparar  # 10. prepara o assistente de IA local (usado no C6)
+python tasks.py pull        # 2. baixa as imagens e o modelo do LLM (llama3.2:3b)
+python tasks.py data        # 3. gera os dados sintéticos (Faker pt_BR)
+python tasks.py pki         # 4. cria a CA e emite os certificados por dispositivo
+python tasks.py wg          # 5. gera as chaves e configs WireGuard (hub + 5 espaços)
+python tasks.py acesso      # 6. gera as chaves SSH do bastion e o segredo TOTP
+python tasks.py up all      # 7. sobe o hub e os 5 nós de borda
+python tasks.py painel      # 8. carrega o banco do painel e sobe os painéis (vulnerável e corrigido) e o WAF
+python tasks.py llm preparar  # 9. prepara o assistente de IA local (usado no C6)
 ```
 
 Ao final, `python tasks.py status` deve listar os contêineres do projeto no ar. Para derrubar tudo:
