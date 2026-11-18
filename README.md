@@ -13,6 +13,8 @@ livre** e **dados sintéticos**, em laboratório isolado.
 
 **Grupo:** Kenzo Schiavone Inoue dos Santos (RM99890) · Pedro Daniluz (RM97697)
 
+**Vídeo de demonstração:** https://youtu.be/2lyashSEDm0
+
 ---
 
 ## 1. Pré-requisitos
